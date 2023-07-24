@@ -1,0 +1,173 @@
+body {
+  overflow-x: hidden;
+  background-color: #f8f8f8 !important;
+}
+
+.themeColor {
+  color: RGB(82, 113, 255);
+}
+.themeColorBg {
+  background-color: RGB(82, 113, 255);
+}
+.list-group-item.active {
+  background: #e2e2e2 !important;
+  color: black !important;
+  border: none !important;
+}
+.list-group-item {
+  display: flex !important;
+  align-items: center !important;
+  /* justify-content: center !important; */
+}
+.text-gray {
+  color: #495057;
+}
+.sidenavd {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+.nav-dn1 {
+  display: none;
+}
+.plusminuscart {
+  cursor: pointer;
+}
+.sidebar {
+  width: 35%;
+}
+.singleProd {
+  width: 800px;
+}
+.dropdownNav2 {
+  display: none;
+}
+@media (max-width: 989px) {
+  .nav-dn1 {
+    display: block;
+  }
+  .nav-dn2 {
+    display: none;
+  }
+  .navv2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .dropdownNav1 {
+    display: none;
+  }
+  .dropdownNav2 {
+    display: inline;
+  }
+}
+@media (max-width: 900px) {
+  .sidebar {
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .sideproductview {
+    display: none !important;
+  }
+  .userprof{
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
+.about-section {
+  /* background-color: #f8f8f8; */
+  /* padding: 80px 0; */
+}
+
+.about-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-content {
+  /* padding-left: 40px; */
+}
+
+.about-content h2 {
+  /* font-size: 30px; */
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.about-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.creative-section {
+  padding: 50px 0;
+}
+
+.creative-section h2 {
+  /* font-size: 24px; */
+  margin-bottom: 40px;
+}
+
+.creative-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.creative-card h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.creative-card p {
+  font-size: 16px;
+}
+
+.hero-section {
+  /* position: relative; */
+  height: 80vh; /* Adjust the desired height */
+  overflow: hidden;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-item img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.carousel-caption {
+  /* position: absolute; */
+  /* text-align: center; */
+  top: 30%;
+  /* left: 50%; */
+
+  /* transform: translate(-50%, -50%); */
+  /* text-align: center; */
+  color: #fff; /* Set the desired text color */
+  z-index: 1;
+}
