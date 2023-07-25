@@ -25,7 +25,7 @@ export const MobileFooter = () => {
   };
 
   return (
-    <Navbar fixed="bottom" bg="light" className="justify-content-around nav-bottom m-0 p-0 py-2">
+    <Navbar fixed="bottom" bg="light" className="justify-content-around nav-bottom m-0 p-0 py-2 mobFooter">
       <Nav.Item>
         <Nav.Link as={NavLink} to="/">
           <AiFillHome size={25} />
