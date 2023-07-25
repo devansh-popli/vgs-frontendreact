@@ -127,9 +127,9 @@ export const Index = () => {
       <div className="my-5">
         <ContactUs />
       </div>
-      <div>
+      {/* <div>
         <AboutUs />
-      </div>
+      </div> */}
       <div>{creativeSection()}</div>
     </>
   );
