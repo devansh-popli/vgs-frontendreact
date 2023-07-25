@@ -106,8 +106,8 @@ body {
     display: block;
   } */
   .imgCat{
-    width: 300px !important;
-    height: 300px !important;
+    width: 250px !important;
+    height: 250px !important;
   }
   .hide-button {
     visibility: visible;

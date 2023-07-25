@@ -11,7 +11,7 @@ const SingleProductView = ({ product,width }) => {
   return (
     <Card
       onClick={navigateToProductsView}
-      className="shadow border-1 mb-2 singleProd"
+      className="shadow border-1 mb-2 singleProd rounded"
       style={{ cursor: "pointer" }}
     >
       <Card.Body>

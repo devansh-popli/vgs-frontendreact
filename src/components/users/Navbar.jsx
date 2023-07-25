@@ -100,7 +100,7 @@ const CustomNavbar = () => {
               Features
             </Nav.Link> */}
             
-            <Nav.Link
+            {/* <Nav.Link
               onClick={() => setExpanded(false)}
               as={NavLink}
               to={"/about"}
@@ -111,9 +111,9 @@ const CustomNavbar = () => {
               onClick={() => setExpanded(false)}
               as={NavLink}
               to={"/contact"}
-            >
-              ContactUs
-            </Nav.Link>
+            > */}
+              {/* ContactUs
+            </Nav.Link> */}
             <Nav.Link
               onClick={() => setExpanded(false)}
               as={NavLink}
@@ -121,8 +121,8 @@ const CustomNavbar = () => {
             >
               Store
             </Nav.Link>
-            <NavDropdown title="Categories" id="collasible-nav-dropdown " className="dropdownNav1">
-              {/* {JSON.stringify(categories)} */}
+            {/* <NavDropdown title="Categories" id="collasible-nav-dropdown " className="dropdownNav1">
+               {JSON.stringify(categories)} 
               {categories.map((category) => {
                 return (
                   <NavDropdown.Item onClick={() => setExpanded(false)}
@@ -138,13 +138,13 @@ const CustomNavbar = () => {
                <NavDropdown.Item as={NavLink} to={"/store"}  onClick={() => setExpanded(false)}>
                 More
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
             {/* <Nav.Link as={NavLink} to={"/store"} className="dropdownNav2"  onClick={() => setExpanded(false)}>
                 All Products
               </Nav.Link> */}
             {categories.map((category) => {
                 return (
-                  <Nav.Link className="dropdownNav2" onClick={() => setExpanded(false)}
+                  <Nav.Link className="" onClick={() => setExpanded(false)}
                     key={category.categoryId}
                     as={NavLink}
                     to={`/store/category/products/${category.categoryId}/${category.title}`}

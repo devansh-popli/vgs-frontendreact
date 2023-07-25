@@ -59,8 +59,8 @@ export const CategoryStorePage = () => {
         >
           <Container fluid>
             <Row>
-              {products.content.map((product) => {
-                return (
+              {products.content.map((product) => product.live && 
+                (
                   <Col
                     className="d-flex justify-content-center "
                     key={product.productId}
@@ -70,8 +70,7 @@ export const CategoryStorePage = () => {
                   >
                     <SingleProductView product={product} />
                   </Col>
-                );
-              })}
+                ))}
             </Row>
           </Container>
         </InfiniteScroll>

@@ -11,9 +11,10 @@ export const trendingProducts = (products) => {
       <Row className="d-flex justify-content-center">
         {products?.map((product) => (
           <Col
-            md={3}
-            lg={2}
-            sm={10}
+          lg={3}
+          md={3}
+          sm={5}
+          xs={8}
             className="mx-2 text-center d-flex justify-content-center"
           >
             <SingleProductView className="ms-2 " product={product} />
@@ -32,12 +33,12 @@ export const trendingCollections = (categories) => {
         {categories?.map((category) => (
           <Col
             lg={4}
-            md={4}
+            md={5}
             sm={6}
             xs={6}
             className="text-center d-flex justify-content-center"
           >
-            <Card as={Link} to={`/store/category/products/${category.categoryId}/${category.title}`} className="rounded my-2" >
+            <Card as={Link} to={`/store/category/products/${category.categoryId}/${category.title}`} className="rounded my-2 " >
                 <div fluid className="position-relative">
                   <img
                     className="rounded imgCat"
