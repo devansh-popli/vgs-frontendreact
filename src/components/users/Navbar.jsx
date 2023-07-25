@@ -40,7 +40,7 @@ const CustomNavbar = () => {
       expand="lg"
       bg="dark"
       variant="dark"
-      className="sticky-top"
+      className="sticky-top navbar12 shadow-sm"
     >
       <Container >
         <Navbar.Brand  onClick={() => setExpanded(false)}

@@ -1,4 +1,4 @@
-import { Button, Card } from "react-bootstrap";
+import { Badge, Button, Card } from "react-bootstrap";
 import { Base } from "../components/Base";
 import { toast } from "react-toastify";
 // import { Cart } from "../pages/cart"
@@ -7,29 +7,42 @@ import {
   creativeSection,
   infoWithImageInLeftSection,
   infoWithImageInRightSection,
+  trendingCollections,
   trendingProducts,
 } from "../components/users/HomePageSections";
 import { useEffect, useState } from "react";
-import { getAllProducts } from "../services/ProductService";
+import { getAllProducts, getLiveProducts } from "../services/ProductService";
 import React from "react";
 import ContactUs from "./ContactUs";
 import AboutUs from "./AboutUs";
 import { Row, Col } from "react-bootstrap";
 import { Carousel, Container } from "react-bootstrap";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { getCategories } from "../services/CategoryService";
 export const Index = () => {
   const findProducts = () => {
-    getAllProducts(0, 5, "addedDate", "desc")
+    getLiveProducts(0, 5, "addedDate", "desc")
       .then((data) => {
         setRecentProducts(data.content);
       })
       .catch((error) => {
         toast.error("Error while getting products");
       });
+      getCategories(0,100)
+      .then((data) => {
+        setCategories(data);
+      })
+      .catch((error) => {
+        toast.error("error loading categories");
+      })
   };
   const [recentProducts, setRecentProducts] = useState(null);
+  const [categories, setCategories] = useState({
+    content: [],
+  });
   useEffect(() => {
     findProducts();
+    getCategories()
   }, []);
   const [sliderImages, setSliderImages] = useState([]);
   const unsplashAccessKey = "YOUR_UNSPLASH_ACCESS_KEY";
@@ -40,25 +53,37 @@ export const Index = () => {
       caption: "Welcome to our Agro eCommerce Website",
       description:
         "Explore our wide range of agricultural products and make your farming experience better.",
-      src: `https://source.unsplash.com/random?farming&pesticides&client_id=${unsplashAccessKey}`,
+      src: `https://source.unsplash.com/random?wallets&gifts&client_id=${unsplashAccessKey}`,
     },
     {
       id: 2,
       caption: "Welcome to our Agro eCommerce Website",
       description:
         "Explore our wide range of agricultural products and make your farming experience better.",
-      src: `https://source.unsplash.com/random?agro&client_id=${unsplashAccessKey}`,
+      src: `https://source.unsplash.com/random?watches&client_id=${unsplashAccessKey}`,
     },
     {
       id: 3,
       caption: "Welcome to our Agro eCommerce Website",
       description:
         "Explore our wide range of agricultural products and make your farming experience better.",
-      src: `https://source.unsplash.com/random?farming&client_id=${unsplashAccessKey}`,
+      src: `https://source.unsplash.com/random?jwellery&client_id=${unsplashAccessKey}`,
     },
     // Add more items with different images, captions, and descriptions
   ];
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrollingDown(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
     <>
       {/* // <
@@ -68,7 +93,10 @@ export const Index = () => {
     //   buttonText="Start Shopping"
     //   buttonVariant="primary"
     // > */}
-      <Carousel className="hero-section" fade>
+    <Container fluid className="text-center py-2 ">
+      <Badge pill className="py-2 text-wrap "><span className="d-flex align-items-center"><Badge className="py-2 me-2 animpulse"  pill bg="success">NEW</Badge> Get custom designed products by sending us a text on whatsapp</span></Badge>
+    </Container>
+      <Carousel className="hero-section px-1" fade variant="dark" nextIcon={<Button className="rounded-circle text-dark bg-white"style={{padding:0,margin:0}}><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="36" width="36" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></Button>} prevIcon={<Button className="rounded-circle text-dark bg-white" style={{padding:0,margin:0}}><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="36" width="36" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg></Button>}>
         {carouselItems.map((item) => (
           <Carousel.Item key={item.id}>
             <img
@@ -76,40 +104,28 @@ export const Index = () => {
               src={item.src}
               alt={`Slide ${item.id}`}
             />
-            <Carousel.Caption>
-              <Container className="d-flex flex-column justify-content-center ">
-                <h1>{item.caption}</h1>
-                <p>{item.description}</p>
+            <Carousel.Caption className="d-flex  justify-content-center align-items-end ">
+              <Container>
+                {/* <h1>{item.caption}</h1>
+                <p>{item.description}</p> */}
                 {/* Add any additional components or elements you want in the hero section */}
+                <Button variant="light" className={`rounded fw-bold text-capitalize zoom-button ${isScrollingDown ? '' : 'hide-button'}`}>Shop Now</Button>
               </Container>
             </Carousel.Caption>
           </Carousel.Item>
         ))}
       </Carousel>
-      <Container fluid className="mb-5">
+      <Container fluid className="my-4">
+      
+      {trendingCollections(categories.content)}
+    </Container>
+      <Container fluid className="my-4">
       
         {trendingProducts(recentProducts)}
       </Container>
-      {/* <div className="my-5 mt-5">
-        {infoWithImageInRightSection(
-          "https://random.imagecdn.app/500/150",
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit animi earum repellat?",
-          "Lorem123"
-        )}
-      </div>
+ 
       <div className="my-5">
-        {infoWithImageInLeftSection(
-          "https://random.imagecdn.app/500/150",
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit animi earum repellat?",
-          "Lorem123"
-        )}
-      </div> */}
-      <div className="my-5">
-        {/* <Card>
-          <Card.Body> */}
         <ContactUs />
-        {/* </Card.Body>
-        </Card> */}
       </div>
       <div>
         <AboutUs />

@@ -22,6 +22,11 @@ body {
 .text-gray {
   color: #495057;
 }
+.navbar12 {
+  margin: 0 !important;
+  padding: 5px !important;
+}
+
 .sidenavd {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
@@ -45,9 +50,65 @@ body {
 .dropdownNav2 {
   display: none;
 }
+.nav-bottom {
+  visibility: hidden;
+}
+.hero-section {
+  /* position: relative; */
+  height: 90vh; /* Adjust the desired height */
+  overflow: hidden;
+}
+/* .btn-shop{
+  visibility: hidden;
+} */
+
+.zoom-button {
+  position: absolute;
+  bottom: 20px; /* Adjust this value to position the button properly */
+  transform: translateX(-50%);
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.20s ease-out;
+}
+
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+
+
+.slide-in {
+  animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    bottom: -80px;
+  }
+  100% {
+    bottom: 20px; /* Adjust this value to position the button properly */
+  }
+}
+
+.hide-button {
+  visibility: hidden;
+}
 @media (max-width: 989px) {
-  .nav-dn1 {
+  /* .nav-dn1 {
     display: block;
+  } */
+  .imgCat{
+    width: 300px !important;
+    height: 300px !important;
+  }
+  .hide-button {
+    visibility: visible;
   }
   .nav-dn2 {
     display: none;
@@ -64,6 +125,14 @@ body {
   .dropdownNav2 {
     display: inline;
   }
+  .nav-bottom {
+    visibility: visible;
+  }
+  .hero-section {
+    /* position: relative; */
+    height: 60vh; /* Adjust the desired height */
+    overflow: hidden;
+  }
 }
 @media (max-width: 900px) {
   .sidebar {
@@ -71,10 +140,14 @@ body {
   }
 }
 @media (max-width: 600px) {
+  .imgCat{
+    height: 160px !important;
+    width: 160px !important;
+  }
   .sideproductview {
     display: none !important;
   }
-  .userprof{
+  .userprof {
     display: flex !important;
     flex-direction: column !important;
   }
@@ -136,12 +209,6 @@ body {
 
 .creative-card p {
   font-size: 16px;
-}
-
-.hero-section {
-  /* position: relative; */
-  height: 80vh; /* Adjust the desired height */
-  overflow: hidden;
 }
 
 .carousel-inner {

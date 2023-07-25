@@ -7,7 +7,7 @@ const AboutUs = () => {
       <Container className='mt-5'>
         <Row>
           <Col md={5} className='d-flex align-items-center my-2'>
-            <Image src={"https://source.unsplash.com/random?agriculture"} style={{height:"320px",width:"100%",objectFit:"contain"}} alt="About Us" fluid />
+            <Image src={"https://source.unsplash.com/random?gifts&store"} style={{height:"320px",width:"100%",objectFit:"contain"}} alt="About Us" fluid />
           </Col>
           <Col md={6}>
             <div className="mt-3 about-content d-flex flex-column justify-content-center">

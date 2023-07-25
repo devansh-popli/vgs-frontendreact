@@ -38,6 +38,7 @@ import { ProgressBar } from "react-bootstrap";
 import LoadingBar from "react-top-loading-bar";
 import AfterPaymentPage from "./pages/users/AfterPaymentPage";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { MobileFooter } from "./components/MobileFooter";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -158,6 +159,7 @@ function App() {
                 <Route path="users" element={<AdminUsers />} />
               </Route>
             </Routes>
+            <MobileFooter/>
             <Footer />
           </BrowserRouter>
         </CartContextProvider>
