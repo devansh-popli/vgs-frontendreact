@@ -25,10 +25,19 @@ export const MobileFooter = () => {
   };
 
   return (
-    <Navbar fixed="bottom" bg="light" className="justify-content-around nav-bottom m-0 p-0 py-2 mobFooter">
+    <Navbar
+      fixed="bottom"
+      bg="light"
+      className="justify-content-around nav-bottom m-0 p-0 py-2 mobFooter"
+    >
       <Nav.Item>
-        <Nav.Link as={NavLink} to="/">
+        <Nav.Link
+          as={NavLink}
+          to="/"
+          className="d-flex flex-column align-items-center justify-content-center"
+        >
           <AiFillHome size={25} />
+          <small className="text-capitalize">Home</small>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
@@ -43,40 +52,60 @@ export const MobileFooter = () => {
             showCartSideBar();
           }}
           as={NavLink}
-          style={{  position: "relative" }}
+          style={{ position: "relative" }}
+          className="d-flex flex-column align-items-center justify-content-center"
         >
-          <HiOutlineShoppingBag style={{ fontSize: "28px" }} />{" "}
-          <span
-            className="bg-success text-white  position-absolute rounded-circle text-center d-flex align-items-center justify-content-center"
-            style={{
-              top: "-8px",
-              right: "-2px",
-              width: "20px",
-              height: "20px",
-            }}
-          >
-            {" "}
-            {cart.items?.length}
-          </span>
+
+          <div>
+            <HiOutlineShoppingBag style={{ fontSize: "28px" }} />{" "}
+            <span
+              className="bg-success text-white  position-absolute rounded-circle text-center d-flex align-items-center justify-content-center"
+              style={{
+                top: "-8px",
+                right: "-2px",
+                width: "20px",
+                height: "20px",
+              }}
+            >
+              {" "}
+              {cart.items?.length}
+            </span>
+          </div>
+          <small className="text-capitalize" >Cart</small>
         </Nav.Link>
       </Nav.Item>
 
       {isLogin ? (
         <Nav.Item>
-          <Nav.Link as={NavLink} to={`/users/profile/${userData.userId}`}>
+          <Nav.Link
+            as={NavLink}
+            to={`/users/profile/${userData.userId}`}
+            className="d-flex flex-column align-items-center justify-content-center"
+          >
             <AiOutlineUser size={25} />
+            <small className="text-capitalize">Profile</small>
           </Nav.Link>
         </Nav.Item>
       ) : (
         <React.Fragment>
           <Nav.Item>
-            <Nav.Link as={NavLink} to="/login">
+            <Nav.Link
+              as={NavLink}
+              to="/login"
+              className="d-flex flex-column align-items-center justify-content-center"
+            >
               <AiOutlineLogin size={25} />
+              <small className="text-capitalize">Login</small>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link as={NavLink} to="/register">
+            <Nav.Link
+              as={NavLink}
+              to="/register"
+              className="d-flex flex-column align-items-center justify-content-center"
+            >
               <AiOutlineUser size={25} />
+              <small className="text-capitalize">Signup</small>
             </Nav.Link>
           </Nav.Item>
         </React.Fragment>
@@ -84,8 +113,12 @@ export const MobileFooter = () => {
 
       {isLogin && (
         <Nav.Item>
-          <Nav.Link onClick={handleLogout}>
+          <Nav.Link
+            onClick={handleLogout}
+            className="d-flex flex-column align-items-center justify-content-center"
+          >
             <AiOutlineLogout size={25} />
+            <small className="text-capitalize">Logout</small>
           </Nav.Link>
         </Nav.Item>
       )}
