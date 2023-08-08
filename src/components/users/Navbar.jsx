@@ -54,7 +54,7 @@ const CustomNavbar = () => {
             height={25}
             width={25}
           />
-          <span  className="ms-2">ElectroStore</span>
+          <span  className="ms-2">JIVU</span>
         </Navbar.Brand>
         {/* <span fluid className="d-flex"> */}
         <div className="d-flex">

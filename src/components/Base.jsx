@@ -4,7 +4,7 @@ import { Footer } from "./Footer";
 import { Link } from "react-router-dom";
 
 export const Base = ({
-  title = "ElectroStore",
+  title = "JIVU",
   description = "Welcome to Your Store",
   buttonText = "Show Now",
   buttonVariant="primary",
