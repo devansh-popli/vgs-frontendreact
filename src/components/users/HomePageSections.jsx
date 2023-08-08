@@ -6,16 +6,16 @@ import { Link } from "react-router-dom";
 
 export const trendingProducts = (products) => {
   return (
-    <Container>
+    <Container fluid>
       <h2 className="ms-2  fw-bold text-center">Best Selling Products</h2>
       <Row className="d-flex justify-content-center">
         {products?.map((product) => (
           <Col
-          lg={3}
+          lg={2}
           md={3}
           sm={5}
           xs={8}
-            className="mx-2 text-center d-flex justify-content-center"
+            className="mx-2 d-flex justify-content-center"
           >
             <SingleProductView className="ms-2 " product={product} />
           </Col>

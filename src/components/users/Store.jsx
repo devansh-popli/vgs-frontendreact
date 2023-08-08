@@ -78,10 +78,10 @@ const Store = () => {
     );
   };
   return (
-    <Container fluid className="px-2 pt-5">
+    <Container fluid className=" pt-5">
       <Row>
           <Container fluid className="d-flex justify-content-start">
-            <Breadcrumb className="mx-5">
+            <Breadcrumb className="ms-5">
               <Breadcrumb.Item as={Link} to="/store">
                 Store
               </Breadcrumb.Item>
