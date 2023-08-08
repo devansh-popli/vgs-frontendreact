@@ -19,6 +19,7 @@ import { Row, Col } from "react-bootstrap";
 import { Carousel, Container } from "react-bootstrap";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { getCategories } from "../services/CategoryService";
+import { Link } from "react-router-dom";
 export const Index = () => {
   const findProducts = () => {
     getLiveProducts(0, 5, "addedDate", "desc")
@@ -109,7 +110,7 @@ export const Index = () => {
                 {/* <h1>{item.caption}</h1>
                 <p>{item.description}</p> */}
                 {/* Add any additional components or elements you want in the hero section */}
-                <Button variant="light" className={`rounded fw-bold text-capitalize zoom-button ${isScrollingDown ? '' : 'hide-button'}`}>Shop Now</Button>
+                <Button variant="light" as={Link} to={"/store"} className={`rounded fw-bold text-capitalize zoom-button ${isScrollingDown ? '' : 'hide-button'}`}>Shop Now</Button>
               </Container>
             </Carousel.Caption>
           </Carousel.Item>
