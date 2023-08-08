@@ -151,7 +151,7 @@ export const AdminOrders = () => {
             </Row>
             <Row>
               <Col>
-                <Table bordered striped>
+                <Table bordered striped responsive>
                   <tbody>
                     <tr>
                       <td>Billing Phone</td>
@@ -203,8 +203,8 @@ export const AdminOrders = () => {
                     <ListGroup>
                       {selectedOrder.orderItems?.map((item) => {
                         return (
-                          <ListGroupItem key={item.orderItemId} onCL>
-                            <Container>
+                          <ListGroupItem key={item.orderItemId} >
+                            <Container fluid>
                               <Row>
                                 <Col
                                   md={2}
@@ -381,7 +381,7 @@ export const AdminOrders = () => {
   };
   return (
     <div>
-      <Container>
+      <Container fluid>
         <Row>
           <Col>{ordersView()}</Col>
         </Row>

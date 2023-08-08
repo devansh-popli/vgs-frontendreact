@@ -242,7 +242,7 @@ export const ViewProducts = () => {
               <Modal.Title>{selectedProduct.title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Container className="text-center">
+              <Container className="text-center" fluid>
                 <img
                   src={
                     selectedProduct.productImage
@@ -313,7 +313,7 @@ export const ViewProducts = () => {
                   </tr>
                 </tbody>
               </Table>
-              <div className="p-3 border">
+              <div className="py-3 border">
                 <ShowHtml htmlText={selectedProduct.description} />
               </div>
             </Modal.Body>
@@ -471,7 +471,7 @@ export const ViewProducts = () => {
                   </Col>
                 </Row>
                 <Form.Group className="mb-3">
-                  <Container className="text-center py-3 border">
+                  <Container className="text-center py-3 border" fluid>
                     <p className="text-muted">Image Preview</p>
                     <img
                       className="img-fluid"
@@ -546,7 +546,7 @@ export const ViewProducts = () => {
   };
   return (
     <>
-      <Container>
+      <Container fluid className="my-2">
         <Row>
           <Col>
             <Card className="shadow border-0">
@@ -578,7 +578,7 @@ export const ViewProducts = () => {
                     </Button>
                   </InputGroup>
                 </Form.Group>
-                <Table striped hover bordered className="shadow" size="sm">
+                <Table striped responsive hover bordered className="shadow" size="sm">
                   <thead>
                     <th className="px-3 small">SN</th>
                     <th className="px-3 small">Title</th>
@@ -659,7 +659,7 @@ export const ViewProducts = () => {
                     })}
                   </tbody>
                 </Table>
-                <Container className="mt-4 d-flex justify-content-end">
+                <Container className="mt-4 d-flex justify-content-end" fluid>
                   {/* {JSON.stringify(products)} */}
                   <Pagination className="">
                     <Pagination.Prev

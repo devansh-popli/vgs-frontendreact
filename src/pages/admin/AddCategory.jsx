@@ -119,7 +119,7 @@ const clearFields=()=>{
                   ref={ref}
                 />
               </Form.Group>
-              <Container className="mt-3 text-center">
+              <Container className="mt-3 text-center" fluid>
                 <Button
                   type="submit"
                   size="sm"

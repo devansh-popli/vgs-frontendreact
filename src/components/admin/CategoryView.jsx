@@ -33,7 +33,7 @@ export const CategoryView = ({handleUpdateOfCategory, category ,deleteCategoryFr
             <Col md={10}>
               <h5>{category.title}</h5>
               <p>{category.description}</p>
-              <Container>
+              <Container fluid>
                 <Button
                   className="mx-1"
                   size="sm"

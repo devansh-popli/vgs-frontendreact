@@ -13,7 +13,7 @@ export const AdminDashboard = () => {
     return (
       <>
         <div>
-          <Container className="px-5" fluid>
+          <Container className="" fluid>
             <Row>
               <Col md={{ span: 2 }}>
                 <SideMenu/>

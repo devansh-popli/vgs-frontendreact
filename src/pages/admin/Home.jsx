@@ -52,7 +52,7 @@ export const AdminHome = () => {
       });
   },[]);
   return (
-    <Container>
+    <Container fluid>
       <Row>
         <Col>
           <Card className="mt-4">
@@ -63,7 +63,7 @@ export const AdminHome = () => {
                 products, to view categories, products, orders, manage orders
                 and many more{" "}
               </p>
-              <Container className="d-grid gap-3">
+              <Container className="d-grid gap-3" fluid>
                 <Button
                   as={Link}
                   className=""

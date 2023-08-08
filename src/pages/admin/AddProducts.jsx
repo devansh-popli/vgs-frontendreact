@@ -297,7 +297,7 @@ export const AddProducts = () => {
               </Col>
             </Row>
             <Form.Group className="mb-3">
-              <Container className="text-center py-3 border">
+              <Container className="text-center py-3 border" fluid>
                 <p className="text-muted">Image Preview</p>
                 <img
                   className="img-fluid"
@@ -351,7 +351,7 @@ export const AddProducts = () => {
                   })}
               </Form.Select>
             </Form.Group>
-            <Container className="text-center">
+            <Container className="text-center" fluid>
               <Button size="sm" variant="success" type={"submit"}>
                 Add Product
               </Button>

@@ -176,7 +176,7 @@ export const ViewCategory = () => {
             <Modal.Title>{selectedCategory?.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Container>
+            <Container fluid>
               <img
                 style={{ width: "100%", height: "250px", objectFit: "contain" }}
                 src={
@@ -272,7 +272,7 @@ export const ViewCategory = () => {
   };
   return (
     <div>
-      <Container className="text-center p-3" hidden={!loading}>
+      <Container fluid className="text-center p-3" hidden={!loading}>
         <Spinner />
         <h4>Loading...</h4>
       </Container>
