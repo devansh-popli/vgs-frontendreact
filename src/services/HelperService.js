@@ -1,6 +1,6 @@
 // export const BASE_URL=`http://localhost:9090`;
 // export const BASE_URL=`http://3.7.134.102:9091`;
-export const BASE_URL=`https://api.craftcastle.co.in`;
+export const BASE_URL=`https://api.mittalsteelindustries.in`;
 export const ADMIN_ORDER_PAGE_SIZE=4
 export const ADMIN_CATEGORY_PAGE_SIZE=10
 export const ADMIN_USERS_PAGE_SIZE=10
