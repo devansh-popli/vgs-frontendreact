@@ -3,41 +3,42 @@ import { Button, Card, Container } from "react-bootstrap";
 import { getProductImageUrl } from "../../services/HelperService";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-const SingleProductView = ({ product,width }) => {
+const SingleProductView = ({ product, width }) => {
   const navigate = useNavigate();
   const navigateToProductsView = () => {
-    navigate(`/products/${product.productId}`);
+    navigate(`/products/${product?.productId}`);
   };
   return (
     <Card
       onClick={navigateToProductsView}
       className="shadow border-1 mb-2 singleProd rounded"
-      style={{ cursor: "pointer" }}
+      style={{ cursor: "pointer", marginLeft: "7px" }}
     >
-      <Card.Body>
-        <Container className="text-center mb-3 d-flex justify-content-center align-items-center">
+      <Card.Body className=" p-2">
+        <div className=" mb-3 d-flex justify-content-center align-items-center">
           <img
-            style={{ objectFit: "contain" }}
-            width={"180px"}
-            height={"170px"}
-            src={getProductImageUrl(product.productId)}
+            style={{ objectFit: "cover" }}
+            className="w-100 productImg"
+            src={getProductImageUrl(product?.productId)}
             alt=""
           />
-        </Container>
+        </div>
         <h6 className="ms-2 text-capitalize text-secondary">
-          {product?.categories[0].title.length < 20
-            ? product?.categories[0].title
-            : product?.categories[0].title.substring(0, 20) + "..."}
+          {product.categories &&
+          product.categories.length > 0 &&
+          product?.categories[0]?.title.length < 20
+            ? product?.categories[0]?.title
+            : product?.categories[0]?.title.substring(0, 20) + "..."}
         </h6>
         <h6 className="ms-2 text-capitalize text-gray">
-          {product.title.length < 20
-            ? product.title
-            : product.title.substring(0, 20) + "..."}
+          {product.title && product.title?.length < 20
+            ? product?.title
+            : product?.title.substring(0, 20) + "..."}
         </h6>
         <Container className="text-start">
           <b>
             <span className="h6 text-muted">
-              <s>₹{product.price}</s>
+              <s>₹{product?.price}</s>
             </span>
           </b>
           <b>

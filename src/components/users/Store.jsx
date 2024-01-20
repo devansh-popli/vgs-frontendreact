@@ -55,7 +55,7 @@ const Store = () => {
             loader={<h3 className="text-center my-5">Loading...</h3>}
             hasMore={!products.lastPage}
           >
-            <Container fluid>
+            <div fluid>
               <Row>
                 {products.content.map((product) => {
                   return (
@@ -65,13 +65,14 @@ const Store = () => {
                       md={4}
                       lg={3}
                       sm={6}
+                      xs={6}
                     >
                       <SingleProductView product={product} />
                     </Col>
                   );
                 })}
               </Row>
-            </Container>
+            </div>
           </InfiniteScroll>
         </>
       )

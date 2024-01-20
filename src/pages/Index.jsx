@@ -84,7 +84,13 @@ export const Index = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
+
   }, []);
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
   return (
     <>
       {/* // <
@@ -120,10 +126,10 @@ export const Index = () => {
       
       {trendingCollections(categories.content)}
     </Container>
-      <Container fluid className="my-4">
+      <div fluid className="px-1 my-4">
       
-        {trendingProducts(recentProducts)}
-      </Container>
+        {trendingProducts(recentProducts,handleSelect,index)}
+      </div>
  
       <div className="my-5">
         <ContactUs />
