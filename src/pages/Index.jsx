@@ -20,6 +20,7 @@ import { Carousel, Container } from "react-bootstrap";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { getCategories } from "../services/CategoryService";
 import { Link } from "react-router-dom";
+import ColorfulCards from "../components/users/ColorFullCards";
 export const Index = () => {
   const findProducts = () => {
     getLiveProducts(0, 5, "addedDate", "desc")
@@ -29,13 +30,13 @@ export const Index = () => {
       .catch((error) => {
         toast.error("Error while getting products");
       });
-      getCategories(0,100)
+    getCategories(0, 100)
       .then((data) => {
         setCategories(data);
       })
       .catch((error) => {
         toast.error("error loading categories");
-      })
+      });
   };
   const [recentProducts, setRecentProducts] = useState(null);
   const [categories, setCategories] = useState({
@@ -43,7 +44,7 @@ export const Index = () => {
   });
   useEffect(() => {
     findProducts();
-    getCategories()
+    getCategories();
   }, []);
   const [sliderImages, setSliderImages] = useState([]);
   const unsplashAccessKey = "YOUR_UNSPLASH_ACCESS_KEY";
@@ -79,12 +80,11 @@ export const Index = () => {
       setIsScrollingDown(window.scrollY > 0);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
-
   }, []);
   const [index, setIndex] = useState(0);
 
@@ -100,10 +100,59 @@ export const Index = () => {
     //   buttonText="Start Shopping"
     //   buttonVariant="primary"
     // > */}
-    <Container fluid className="text-center py-2 ">
-      <Badge pill className="py-2 text-wrap "><span className="d-flex align-items-center"><Badge className="py-2 me-2 animpulse"  pill bg="success">NEW</Badge> Get custom designed products by sending us a text on whatsapp</span></Badge>
-    </Container>
-      <Carousel className="hero-section px-1" fade variant="dark" nextIcon={<Button className="rounded-circle text-dark bg-white"style={{padding:0,margin:0}}><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="36" width="36" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></Button>} prevIcon={<Button className="rounded-circle text-dark bg-white" style={{padding:0,margin:0}}><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="36" width="36" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg></Button>}>
+      {/* <Container fluid className="text-center py-2 ">
+        <Badge pill className="py-2 text-wrap ">
+          <span className="d-flex align-items-center">
+            <Badge className="py-2 me-2 animpulse" pill bg="success">
+              NEW
+            </Badge>{" "}
+            Get custom designed products by sending us a text on whatsapp
+          </span>
+        </Badge>
+      </Container> */}
+      <Carousel
+        className="hero-section px-1"
+        fade
+        variant="dark"
+        nextIcon={
+          <Button
+            className="rounded-circle text-dark bg-white"
+            style={{ padding: 0, margin: 0 }}
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              height="36"
+              width="36"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+            </svg>
+          </Button>
+        }
+        prevIcon={
+          <Button
+            className="rounded-circle text-dark bg-white"
+            style={{ padding: 0, margin: 0 }}
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              height="36"
+              width="36"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+            </svg>
+          </Button>
+        }
+      >
         {carouselItems.map((item) => (
           <Carousel.Item key={item.id}>
             <img
@@ -116,24 +165,32 @@ export const Index = () => {
                 {/* <h1>{item.caption}</h1>
                 <p>{item.description}</p> */}
                 {/* Add any additional components or elements you want in the hero section */}
-                <Button variant="light" as={Link} to={"/store"} className={`rounded fw-bold text-capitalize zoom-button ${isScrollingDown ? '' : 'hide-button'}`}>Shop Now</Button>
+                <Button
+                  variant="light"
+                  as={Link}
+                  to={"/store"}
+                  className={`rounded fw-bold text-capitalize zoom-button ${
+                    isScrollingDown ? "" : "hide-button"
+                  }`}
+                >
+                  Shop Now
+                </Button>
               </Container>
             </Carousel.Caption>
           </Carousel.Item>
         ))}
       </Carousel>
       <Container fluid className="my-4">
-      
-      {trendingCollections(categories.content)}
-    </Container>
+        {trendingCollections(categories.content)}
+      </Container>
       <div fluid className="px-1 my-4">
-      
-        {trendingProducts(recentProducts,handleSelect,index)}
+        {trendingProducts(recentProducts, handleSelect, index)}
       </div>
- 
-      <div className="my-5">
-        <ContactUs />
-      </div>
+
+      <Container className="mt-5 ">
+        <h2 className="text-center fw-bold">Save on JIVU</h2>
+        <ColorfulCards />
+      </Container>
       {/* <div>
         <AboutUs />
       </div> */}

@@ -11,6 +11,7 @@ import { CartSideBar } from "../../pages/CartSideBar";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { getCategories } from "../../services/CategoryService";
 import { toast } from "react-toastify";
+import { SearchField } from "./SearchField";
 const CustomNavbar = () => {
   const userContext = useContext(UserContext);
   const { showCartSideBar, showCart, setCart } = useContext(CartContext);
@@ -38,11 +39,11 @@ const CustomNavbar = () => {
       expanded={expanded}
       collapseOnSelect
       expand="lg"
-      bg="dark"
-      variant="dark"
-      className="sticky-top navbar12 shadow-sm"
+      bg="white"
+      variant="light"
+      className="  navbar12"
     >
-      <Container >
+      <Container fluid>
         <Navbar.Brand  onClick={() => setExpanded(false)}
           as={NavLink}
           to={"/"}
@@ -92,6 +93,9 @@ const CustomNavbar = () => {
         </div>
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="m-auto navv2">
+            <div className="displayHiddenOnMobile">
+          <SearchField/>
+            </div>
             {/* <Nav.Link
               onClick={() => setExpanded(false)}
               as={NavLink}
@@ -114,13 +118,7 @@ const CustomNavbar = () => {
             > */}
               {/* ContactUs
             </Nav.Link> */}
-            <Nav.Link
-              onClick={() => setExpanded(false)}
-              as={NavLink}
-              to={"/store"}
-            >
-              Store
-            </Nav.Link>
+            
             {/* <NavDropdown title="Categories" id="collasible-nav-dropdown " className="dropdownNav1">
                {JSON.stringify(categories)} 
               {categories.map((category) => {
@@ -142,17 +140,7 @@ const CustomNavbar = () => {
             {/* <Nav.Link as={NavLink} to={"/store"} className="dropdownNav2"  onClick={() => setExpanded(false)}>
                 All Products
               </Nav.Link> */}
-            {categories.map((category) => {
-                return (
-                  <Nav.Link className="" onClick={() => setExpanded(false)}
-                    key={category.categoryId}
-                    as={NavLink}
-                    to={`/store/category/products/${category.categoryId}/${category.title}`}
-                  >
-                    {category.title}
-                  </Nav.Link>
-                );
-              })}
+         
           </Nav>
           <Nav className="navv2">
          

@@ -39,6 +39,8 @@ import LoadingBar from "react-top-loading-bar";
 import AfterPaymentPage from "./pages/users/AfterPaymentPage";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { MobileFooter } from "./components/MobileFooter";
+import TopNavbar from "./components/users/TopNavbar";
+import BelowNavbar from "./components/users/BelowNavbar";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -121,7 +123,11 @@ function App() {
               progress={progress}
               waitingTime={1100}
             />
-            <CustomNavbar />
+              <TopNavbar />
+            <div className="sticky-top">
+              <CustomNavbar />
+              <BelowNavbar />
+            </div>
             <Loading show={loading} />
             <Routes>
               <Route path="/" element={<Index />} />
@@ -159,7 +165,7 @@ function App() {
                 <Route path="users" element={<AdminUsers />} />
               </Route>
             </Routes>
-            <MobileFooter/>
+            <MobileFooter />
             <Footer />
           </BrowserRouter>
         </CartContextProvider>
