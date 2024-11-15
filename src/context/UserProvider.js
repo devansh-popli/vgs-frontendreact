@@ -5,6 +5,7 @@ import {
   doLogoutFromLocalStorage,
   getUserFromLocalStorage,
   isAdminUser,
+  isBusinessUserRole,
   isLoggedIn,
 } from "../auth/HelperAuth";
 
@@ -12,11 +13,12 @@ export const UserProvider = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [userData, setUserData] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
-
+  const [isBusinessUser, setIsBusinessUser] = useState(false);
   useEffect(() => {
     setIsLogin(isLoggedIn());
     setUserData(getUserFromLocalStorage());
     setIsAdmin(isAdminUser())
+    setIsBusinessUser(isBusinessUserRole())
   },[]);
 
   const doLogin = (data) => {
@@ -24,12 +26,14 @@ export const UserProvider = ({ children }) => {
     setIsLogin(true);
     setUserData(getUserFromLocalStorage());
     setIsAdmin(isAdminUser())
+    setIsBusinessUser(isBusinessUserRole())
   };
   const doLogout = () => {
     doLogoutFromLocalStorage();
     setIsLogin(false);
     setUserData(null);
     setIsAdmin(false)
+    setIsBusinessUser(false)
   };
   return (
     <UserContext.Provider
@@ -38,6 +42,7 @@ export const UserProvider = ({ children }) => {
         isLogin: isLogin,
         doLogin: doLogin,
         isAdmin: isAdmin,
+        isBusinessUser:isBusinessUser,
         doLogout: doLogout,
       }}
     >

@@ -17,15 +17,22 @@ import ContactUs from "./ContactUs";
 import AboutUs from "./AboutUs";
 import { Row, Col } from "react-bootstrap";
 import { Carousel, Container } from "react-bootstrap";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { getCategories } from "../services/CategoryService";
 import { Link } from "react-router-dom";
 import ColorfulCards from "../components/users/ColorFullCards";
+import CategoriesSection from "../components/users/CategoriesSections";
 export const Index = () => {
   const findProducts = () => {
     getLiveProducts(0, 5, "addedDate", "desc")
       .then((data) => {
         setRecentProducts(data.content);
+      })
+      .catch((error) => {
+        toast.error("Error while getting products");
+      });
+      getLiveProducts(0, 5, "addedDate", "asc")
+      .then((data) => {
+        setRecommendedProducts(data.content);
       })
       .catch((error) => {
         toast.error("Error while getting products");
@@ -38,7 +45,8 @@ export const Index = () => {
         toast.error("error loading categories");
       });
   };
-  const [recentProducts, setRecentProducts] = useState(null);
+  const [recentProducts, setRecentProducts] = useState([]);
+  const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [categories, setCategories] = useState({
     content: [],
   });
@@ -55,21 +63,21 @@ export const Index = () => {
       caption: "Welcome to our Agro eCommerce Website",
       description:
         "Explore our wide range of agricultural products and make your farming experience better.",
-      src: `https://source.unsplash.com/random?wallets&gifts&client_id=${unsplashAccessKey}`,
+      src: `https://plus.unsplash.com/premium_photo-1683120945190-42ebfb2b6e7e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
     },
     {
       id: 2,
       caption: "Welcome to our Agro eCommerce Website",
       description:
         "Explore our wide range of agricultural products and make your farming experience better.",
-      src: `https://source.unsplash.com/random?watches&client_id=${unsplashAccessKey}`,
+      src: `https://cdn.pixabay.com/photo/2019/02/01/02/43/jewellery-3968328_1280.jpg`,
     },
     {
       id: 3,
       caption: "Welcome to our Agro eCommerce Website",
       description:
         "Explore our wide range of agricultural products and make your farming experience better.",
-      src: `https://source.unsplash.com/random?jwellery&client_id=${unsplashAccessKey}`,
+      src: `https://images.pexels.com/photos/29245554/pexels-photo-29245554/free-photo-of-elegant-diamond-and-emerald-necklace-set-on-display.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2`,
     },
     // Add more items with different images, captions, and descriptions
   ];
@@ -111,7 +119,7 @@ export const Index = () => {
         </Badge>
       </Container> */}
       <Carousel
-        className="hero-section px-1"
+        className="hero-section px-3"
         fade
         variant="dark"
         nextIcon={
@@ -169,7 +177,7 @@ export const Index = () => {
                   variant="light"
                   as={Link}
                   to={"/store"}
-                  className={`rounded fw-bold text-capitalize zoom-button ${
+                  className={`rounded fw-bold text-capitalize zoom-button themebgColor text-white ${
                     isScrollingDown ? "" : "hide-button"
                   }`}
                 >
@@ -183,14 +191,16 @@ export const Index = () => {
       <Container fluid className="my-4">
         {trendingCollections(categories.content)}
       </Container>
-      <div fluid className="px-1 my-4">
-        {trendingProducts(recentProducts, handleSelect, index)}
+      <div fluid className=" my-4">
+        {trendingProducts(recentProducts, handleSelect, index,'Best Selling Products')}
       </div>
 
-      <Container className="mt-5 ">
-        <h2 className="text-center fw-bold">Save on JIVU</h2>
-        <ColorfulCards />
-      </Container>
+      <div className="mt-5 ">
+        <CategoriesSection/>
+      </div>
+      <div fluid className=" my-4">
+        {trendingProducts(recentProducts, handleSelect, index,'Recommended for You')}
+      </div>
       {/* <div>
         <AboutUs />
       </div> */}

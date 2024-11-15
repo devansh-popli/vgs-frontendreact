@@ -64,7 +64,7 @@ export const CategoryStorePage = () => {
                   <Col
                     className="d-flex justify-content-center "
                     key={product.productId}
-                    md={4}
+                    md={2}
                     lg={3}
                     sm={6}
                   >
@@ -84,8 +84,8 @@ export const CategoryStorePage = () => {
   return (
     <Container fluid className=" pt-5">
       <Row>
-        <Container className="d-flex justify-content-start">
-          <Breadcrumb className="ms-5">
+        {/* <Container className="d-flex justify-content-start"> */}
+          {/* <Breadcrumb className="ms-5">
             <Breadcrumb.Item onClick={()=>navigate("/store")}>
               Store
             </Breadcrumb.Item>
@@ -94,8 +94,8 @@ export const CategoryStorePage = () => {
         </Container>
         <Col md={2} className="sideproductview">
           <UserCategoryView imagepath={"../../../../assets/logo.png"} />
-        </Col>
-        <Col md={10}>{productsView()}</Col>
+        </Col> */}
+        <Col md={12}>{productsView()}</Col>
       </Row>
     </Container>
   );

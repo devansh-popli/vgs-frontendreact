@@ -2,14 +2,15 @@ import React from "react";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { toast } from "react-toastify";
-import { getOrdersOfUser } from "../../services/OrderService";
+import { getOrdersOfREFFERALUser, getOrdersOfUser } from "../../services/OrderService";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Badge, Button, Card, Col, Container, ListGroup, ListGroupItem, Modal, Row, Table } from "react-bootstrap";
 import { SingleOrderView } from "../../components/admin/SingleOrderView";
 import { formatDate, getProductImageUrl } from "../../services/HelperService";
+import { useLocation } from "react-router-dom";
 
-export const LoadOrders = () => {
+export const LoadOrders = ({ isRefferalUser }) => {
   const { userData, isLogin } = useContext(UserContext);
   const [ordersData, setOrdersData] = useState(null);
   const [show, setShow] = useState(false);
@@ -23,15 +24,26 @@ export const LoadOrders = () => {
   };
   const loadOrderOfUsers = async (userId) => {
     try {
-      const data = await getOrdersOfUser(userId);
-      setOrdersData(data);
+      
+      if (isRefferalUser) {
+        console.log(userData)
+        const data = await getOrdersOfREFFERALUser(userData.referralCode)
+         setOrdersData(data);
+      }
+      else {
+        const data = await getOrdersOfUser(userId);
+        setOrdersData(data);
+      }
+
+      
     } catch (e) {
       toast.error("error while loading orders");
     }
   };
+  const location = useLocation();
   useEffect(() => {
     if (isLogin) loadOrderOfUsers(userData.userId);
-  }, [isLogin]);
+  }, [isLogin,location]);
   const ordersView = () => {
     return (
       <Card className="shadow-sm mt-3">
@@ -49,7 +61,7 @@ export const LoadOrders = () => {
                 );
               })}
             </>
-          ):(
+          ) : (
             <div className="h5 fw-bold text-center mt-4 text-secondary">No Items in Your Order</div>
           )}
         </Card.Body>
@@ -185,7 +197,7 @@ export const LoadOrders = () => {
       <Container>
         <Row>
           <Col>{ordersView()}
-          {orderViewModal()}
+            {orderViewModal()}
           </Col>
         </Row>
       </Container>

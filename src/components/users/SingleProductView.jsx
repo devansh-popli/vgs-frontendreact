@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import { getProductImageUrl } from "../../services/HelperService";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const SingleProductView = ({ product, width }) => {
   const navigate = useNavigate();
+  const [copySuccess, setCopySuccess] = useState('');
   const navigateToProductsView = () => {
     navigate(`/products/${product?.productId}`);
   };
+  const userContext=useContext(UserContext)
+
+  const copyToClipBoard=async (productId)=>{
+    try {
+      const url = `${window.location.origin}/products/${productId}/${userContext?.userData?.referralCode}`;
+      await navigator.clipboard.writeText(url);
+      setCopySuccess('Link copied!');
+      setTimeout(() => {
+        setCopySuccess(''); // Reset text after 2 seconds
+      }, 2000);
+    } catch (err) {
+      setCopySuccess('Failed to copy!');
+    }
+  }
   return (
     <Card
-      onClick={navigateToProductsView}
-      className="shadow border-1 mb-2 singleProd rounded"
-      style={{ cursor: "pointer", marginLeft: "7px" }}
+     
+      className="shadow border-0 mb-2 singleProd rounded"
+      style={{ cursor: "pointer", marginLeft: "" }}
     >
-      <Card.Body className=" p-2">
-        <div className=" mb-3 d-flex justify-content-center align-items-center">
+      <>
+      <div className=" d-flex justify-content-center align-items-center"  onClick={navigateToProductsView}>
           <img
             style={{ objectFit: "cover" }}
             className="w-100 productImg"
@@ -23,32 +39,42 @@ const SingleProductView = ({ product, width }) => {
             alt=""
           />
         </div>
-        <h6 className="ms-2 text-capitalize text-secondary">
+      </>
+      <Card.Body className="">
+        {/* <h6 className="ms-2 text-capitalize text-secondary">
           {product.categories &&
-          product.categories.length > 0 &&
-          product?.categories[0]?.title.length < 20
+          product.categories?.length > 0 &&
+          product?.categories[0]?.title?.length < 20
             ? product?.categories[0]?.title
             : product?.categories[0]?.title.substring(0, 20) + "..."}
-        </h6>
-        <h6 className="ms-2 text-capitalize text-gray">
-          {product.title && product.title?.length < 20
+        </h6> */}
+        <h6 className="ms-2 text-capitalize text-gray font"  onClick={navigateToProductsView}>
+          {product.title && product.title?.length < 30
             ? product?.title
-            : product?.title.substring(0, 20) + "..."}
+            : product?.title.substring(0, 30) + "..."}
         </h6>
-        <Container className="text-start">
+        <Container className="text-start font">
           <b>
-            <span className="h6 text-muted">
+            <span className="h6 text-muted font">
               <s>₹{product?.price}</s>
             </span>
           </b>
           <b>
-            <span className=" h6 ms-2">₹{product.discountedPrice}</span>
+            <span className=" h6 ms-2 font">₹{product?.discountedPrice}</span>
           </b>
         </Container>
-        <Container className="d-grid mt-2">
-          {/* <Button size='sm' className='' variant={'success'}>View Product</Button> */}
-        </Container>
       </Card.Body>
+      <div className="px-2">
+{
+      userContext.isBusinessUser &&
+        <div style={{display:"flex",justifyContent:"end"}}>
+          <Button onClick={()=>copyToClipBoard(product?.productId)} size='sm' className='themeBorderColor font themeColor mb-2 ' variant={'outline-success'}> {copySuccess ? copySuccess:'Copy Affilate Link'}</Button>
+        </div>
+}
+        <div className="d-grid mb-2">
+          <Button size='sm' className='gradientBgColor text-dark font' variant={'success'}>Add to Cart</Button>
+        </div>
+      </div>
     </Card>
   );
 };

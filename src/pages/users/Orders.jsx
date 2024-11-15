@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
@@ -28,7 +28,13 @@ export const Orders = () => {
     paymentStatus: "",
     orderStatus: "",
     userId: "",
+    referralCode:""
   });
+  
+  useEffect(()=>{
+    const refCode=localStorage.getItem("referralId")
+    setOrder({...order,referralCode:refCode})
+  },[])
   const handleFieldUpdate = (event) => {
     setOrder({ ...order, [event.target.name]: event.target.value });
   };
@@ -133,6 +139,16 @@ export const Orders = () => {
                     />
                   </Form.Group>
                   <Form.Group className="mt-3">
+                    <Form.Label>Referral Code</Form.Label>
+                    <Form.Control
+                      onChange={(event) => handleFieldUpdate(event)}
+                      name="referralCode"
+                      placeholder="enter here"
+                      type="text"
+                      value={order.referralCode}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mt-3">
                     <Form.Label>Billing Address</Form.Label>
                     <Form.Control
                       onChange={(event) => handleFieldUpdate(event)}
@@ -140,10 +156,11 @@ export const Orders = () => {
                       placeholder="enter here"
                       as={"textarea"}
                       rows={6}
+                      
                     />
                   </Form.Group>
                   <Container className="d-grid mt-3">
-                    <Button variant="success" onClick={openRazorpayCheckout}>
+                    <Button variant="success" onClick={openRazorpayCheckout} className="themebgColor">
                       Proceed to Pay
                     </Button>
                   </Container>

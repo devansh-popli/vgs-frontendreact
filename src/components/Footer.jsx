@@ -8,7 +8,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 export const Footer = () => {
   return (
-    <footer style={{backgroundColor:"#0d1b2a"}} className=" text-light mt-5 py-4">
+    <footer style={{backgroundColor:"#0d1b2a"}} className="bg-tone text-dark mt-5 py-4">
       <Container>
         <Row className="text-center">
           <Col>
@@ -24,7 +24,7 @@ export const Footer = () => {
                   href="https://facebook.com/your-github-username"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-light me-4"
+                  className="text-dark me-4"
                 >
                   <FaInstagram />
                 </a>
@@ -32,7 +32,7 @@ export const Footer = () => {
                   href="https://www.instagaram.com/in/your-linkedin-username"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-light me-4"
+                  className="text-dark   me-4"
                 >
                   <FaFacebook />
                 </a>

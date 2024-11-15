@@ -25,6 +25,12 @@ export const getOrdersOfUser = async (userId) => {
   );
   return result.data;
 };
+export const getOrdersOfREFFERALUser = async (referralId) => {
+  let result = await privateAxios.get(
+    `/orders/referral/${referralId}`
+  );
+  return result.data;
+};
 export const createdTrancationOfOrder = async (amount) => {
   let result = await privateAxios.get(
     `/orders/create-transaction-razorpay/${amount}`

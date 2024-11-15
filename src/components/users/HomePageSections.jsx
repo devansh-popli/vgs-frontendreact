@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Button,
   Card,
-  Carousel,
   Col,
   Container,
   Image,
@@ -11,9 +10,10 @@ import {
 import SingleProductView from "./SingleProductView";
 import { getCategoryImageUrl } from "../../services/HelperService";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
 import { useSpring, animated } from "@react-spring/web";
-
+import FeaturedSection from "./FeaturedSection";
+import Carousel from 'react-multi-carousel';
+const MultiCarousel = Carousel;
 const PremiumCard = ({ title, description, imgSrc, delay }) => {
   const animationProps = useSpring({
     from: { opacity: 0, transform: "translateY(50px)" },
@@ -27,14 +27,14 @@ const PremiumCard = ({ title, description, imgSrc, delay }) => {
       <animated.div style={animationProps}>
         <Card className="mb-4  p-4 shadow rounded border-0 text-center ">
           <div className="mt-3">
-            <span style={{ border: "1px solid black",width:"10px",backgroundColor:"#e0e1dd" }} className="p-1   rounded-circle ">
+            <span style={{ border: "1px solid black", width: "10px", backgroundColor: "#e0e1dd" }} className="p-1   rounded-circle ">
               {imgSrc}
             </span>
           </div>
 
           <Card.Body>
             <Card.Title>{title}</Card.Title>
-            <Card.Text style={{fontSize:"11px"}}>{description}</Card.Text>
+            <Card.Text style={{ fontSize: "11px" }}>{description}</Card.Text>
           </Card.Body>
         </Card>
       </animated.div>
@@ -42,7 +42,7 @@ const PremiumCard = ({ title, description, imgSrc, delay }) => {
   );
 };
 
-const PremiumCards = () => {
+export const PremiumCards = () => {
   return (
     <Container className="my-5">
       <Row>
@@ -72,13 +72,13 @@ const PremiumCards = () => {
         <PremiumCard
           title="Free Shipping"
           description="We ship all over India for FREE."
-          imgSrc={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/><circle cx="7" cy="18" r="2"/><path d="M15 18H9"/><circle cx="17" cy="18" r="2"/></svg>}
+          imgSrc={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11" /><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2" /><circle cx="7" cy="18" r="2" /><path d="M15 18H9" /><circle cx="17" cy="18" r="2" /></svg>}
           delay={200}
         />
         <PremiumCard
           title="Exciting Offers"
           description="We provide amazing offers & discounts on our products."
-          imgSrc={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-indian-rupee"><path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 8.5 8"/><path d="M6 13h3"/><path d="M9 13c6.667 0 6.667-10 0-10"/></svg>}
+          imgSrc={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-indian-rupee"><path d="M6 3h12" /><path d="M6 8h12" /><path d="m6 13 8.5 8" /><path d="M6 13h3" /><path d="M9 13c6.667 0 6.667-10 0-10" /></svg>}
           delay={400}
         />
       </Row>
@@ -86,73 +86,105 @@ const PremiumCards = () => {
   );
 };
 
-export default PremiumCards;
 
-export const trendingProducts = (products, handleSelect, index) => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: "6%",
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-          infinite: true,
-          arrows: true,
-          dots: true,
-          centerMode: true,
-          centerPadding: "0",
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          arrows: false,
-          dots: false,
-          slidesToShow: 2.2,
-          slidesToScroll: 2.2,
-          initialSlide: 2,
-          centerMode: true,
-          centerPadding: "0",
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          dots: false,
-          arrows: false,
-          slidesToShow: 2.2,
-          slidesToScroll: 2.2,
-          centerMode: false,
-        },
-      },
-    ],
+export const trendingProducts = (products=[], handleSelect, index,text) => {
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 1400 },
+      items: 4.5
+    },
+    desktop: {
+      breakpoint: { max: 1400, min: 1101 },
+      items: 3.5
+    },
+    tablet: {
+      breakpoint: { max: 1100, min: 881 },
+      items: 3
+    },
+    mobile: {
+      breakpoint: { max: 880, min: 680 },
+      items: 2.5
+    },
+    smallmobile: {
+      breakpoint: { max: 679, min: 600 },
+      items: 2.3
+    },
+    smallmobile2: {
+      breakpoint: { max: 600, min: 565 },
+      items: 3.3
+    },
+    smallmobile1: {
+      breakpoint: { max: 565, min: 451 },
+      items: 2.5
+    },
+    smallmobile05: {
+      breakpoint: { max: 450, min: 366 },
+      items: 2.2
+    },
+    smallmobile0: {
+      breakpoint: { max: 365, min: 0 },
+      items: 2.1
+    }
   };
-
+  
+  const productsArr = products?.map((product) => (
+    <SingleProductView id={product?.productId} product={product} />))
   return (
-    <div fluid>
-      <h2 className="ms-2  fw-bold text-center">Best Selling Products</h2>
-      <Slider {...settings}>
+    <Container fluid>
+      <Col>
+        <h2 className="display-4 text-center mb-3" style={{ color: '#333' }}>{text}</h2>
+        {/* <p className="lead text-muted text-center ">Discover what makes us unique and why our customers love shopping with us.</p> */}
+      </Col>
+      {/* <Slider {...settings}> */}
+
+      <Carousel
+      swipeable={true}
+      draggable={false}
+      ssr={true} // means to render carousel on server-side.
+      infinite={true}
+      // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+      autoPlaySpeed={1000}
+      keyBoardControl={true}
+      customTransition="all .5"
+      transitionDuration={500}
+      containerClass="carousel-container"
+      removeArrowOnDeviceType={["tablet", "mobile"]}
+      dotListClass="custom-dot-list-style"
+      itemClass="carousel-item-padding-40-px"
+      responsive={responsive}>
+
+        {/* {productsArr} */}
+        {/* <div>∂∂∂¥¥¥</div>
+          // <div>∂∂∂¥¥¥</div> */}
+        {products?.map((product) =>
+          <SingleProductView id={product?.productId} product={product} />)
+        }
+
+      </Carousel>
+      {/* <Carousel responsive={responsive}>
+
         {products?.map((product, index) => (
-          <div key={product.productId} className="">
-            <SingleProductView product={product} />
-          </div>
+          <>
+            <div key={product.productId} className="">
+              <SingleProductView product={product} />
+            </div>
+          </>
         ))}
-      </Slider>
-    </div>
+      </Carousel> */}
+      {/* </MultiCarousel> */}
+      {/* </Slider> */}
+    </Container>
   );
 };
 
 export const trendingCollections = (categories) => {
   return (
     <Container>
-      <h2 className="mt-3  fw-bold text-center">Collections</h2>
+      <Col>
+        <h2 className="display-4 text-center" style={{ color: '#333' }}>Collections</h2>
+        <p className="lead text-muted text-center ">Discover what makes us unique and why our customers love shopping with us.</p>
+      </Col>
       <Row className="d-flex justify-content-center">
         {categories?.map((category) => (
           <Col
@@ -176,9 +208,7 @@ export const trendingCollections = (categories) => {
                     width: "400px",
                   }}
                   src={
-                    true
-                      ? `https://source.unsplash.com/random?${category.title}`
-                      : getCategoryImageUrl(category.categoryId)
+                    getCategoryImageUrl(category.categoryId)
                   }
                   alt=""
                 />
@@ -236,7 +266,7 @@ export const creativeSection = (image, text, title) => {
   return (
     <section className="creative-section">
       <Container>
-        <PremiumCards />
+        <FeaturedSection />
       </Container>
     </section>
   );

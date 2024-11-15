@@ -17,7 +17,7 @@ export const Base = ({
     <div>
       <Container
         fluid
-        className="bg-dark p-5  d-flex align-items-center justify-content-center text-center"
+        className="bg-white p-5  d-flex align-items-center justify-content-center text-center"
       >
         <div className="">
           <h3 className="text-white">{title}</h3>

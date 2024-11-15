@@ -12,7 +12,12 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { getCategories } from "../../services/CategoryService";
 import { toast } from "react-toastify";
 import { SearchField } from "./SearchField";
-const CustomNavbar = () => {
+import { BsFillPersonFill } from "react-icons/bs";
+import { FaShippingFast } from "react-icons/fa";
+import { IoIosLogOut } from "react-icons/io";
+import { Dropdown } from "react-bootstrap";
+import { HiMiniBars3 } from "react-icons/hi2";
+const CustomNavbar = ({toggleSidebar}) => {
   const userContext = useContext(UserContext);
   const { showCartSideBar, showCart, setCart } = useContext(CartContext);
 
@@ -24,7 +29,7 @@ const CustomNavbar = () => {
   };
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    getCategories(0,1000)
+    getCategories(0, 1000)
       .then((data) => {
         // console.log(data,"cat")
         setCategories(data.content);
@@ -33,8 +38,10 @@ const CustomNavbar = () => {
         toast.error("error while getting categories");
       });
   }, []);
+
   const { cart } = useContext(CartContext);
   return (
+    <>
     <Navbar
       expanded={expanded}
       collapseOnSelect
@@ -44,7 +51,8 @@ const CustomNavbar = () => {
       className="  navbar12"
     >
       <Container fluid>
-        <Navbar.Brand  onClick={() => setExpanded(false)}
+        <HiMiniBars3 size={30} className="me-2"onClick={toggleSidebar}/>
+        <Navbar.Brand onClick={() => setExpanded(false)}
           as={NavLink}
           to={"/"}
           className="d-flex justify-content-center align-items-center"
@@ -55,7 +63,7 @@ const CustomNavbar = () => {
             height={25}
             width={25}
           />
-          <span  className="ms-2">JIVU</span>
+          <span className="ms-2">JIVU</span>
         </Navbar.Brand>
         {/* <span fluid className="d-flex"> */}
         <div className="d-flex">
@@ -69,9 +77,9 @@ const CustomNavbar = () => {
                 as={NavLink}
                 style={{ height: "30px", position: "relative" }}
               >
-                <HiOutlineShoppingBag className="text-white" style={{fontSize:"28px"}} />{" "}
+                <HiOutlineShoppingBag className="text-white" style={{ fontSize: "28px" }} />{" "}
                 <span
-                  className="bg-success text-white  position-absolute rounded-circle text-center d-flex align-items-center justify-content-center"
+                  className="themebgColor text-white  position-absolute rounded-circle text-center d-flex align-items-center justify-content-center"
                   style={{
                     top: "-7px",
                     right: "0.5px",
@@ -85,16 +93,16 @@ const CustomNavbar = () => {
               </Nav.Link>
             </div>
           </div>
-          <Navbar.Toggle
-          className="ms-3"
+          {/* <Navbar.Toggle
+            className="ms-3"
             onClick={() => setExpanded(expanded ? false : true)}
             aria-controls=" responsive-navbar-nav "
-          />
+          /> */}
         </div>
-        <Navbar.Collapse id="responsive-navbar-nav">
+        {/* <Navbar.Collapse id="responsive-navbar-nav"> */}
           <Nav className="m-auto navv2">
             <div className="displayHiddenOnMobile">
-          <SearchField/>
+              <SearchField />
             </div>
             {/* <Nav.Link
               onClick={() => setExpanded(false)}
@@ -103,7 +111,7 @@ const CustomNavbar = () => {
             >
               Features
             </Nav.Link> */}
-            
+
             {/* <Nav.Link
               onClick={() => setExpanded(false)}
               as={NavLink}
@@ -116,9 +124,9 @@ const CustomNavbar = () => {
               as={NavLink}
               to={"/contact"}
             > */}
-              {/* ContactUs
+            {/* ContactUs
             </Nav.Link> */}
-            
+
             {/* <NavDropdown title="Categories" id="collasible-nav-dropdown " className="dropdownNav1">
                {JSON.stringify(categories)} 
               {categories.map((category) => {
@@ -140,10 +148,10 @@ const CustomNavbar = () => {
             {/* <Nav.Link as={NavLink} to={"/store"} className="dropdownNav2"  onClick={() => setExpanded(false)}>
                 All Products
               </Nav.Link> */}
-         
+
           </Nav>
           <Nav className="navv2">
-         
+
             <div className="nav-dn2">
               <Nav.Link
                 onClick={() => {
@@ -153,9 +161,12 @@ const CustomNavbar = () => {
                 as={NavLink}
                 style={{ height: "50px", position: "relative" }}
               >
-                <HiOutlineShoppingBag style={{fontSize:"28px"}} />{" "}
+                <div className="d-flex flex-column align-items-center" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "2px" }}>
+                  <HiOutlineShoppingBag style={{ fontSize: "28px" }} />{" "}
+                  <span>Cart</span>
+                </div>
                 <span
-                  className="bg-success text-white  position-absolute rounded-circle text-center d-flex align-items-center justify-content-center"
+                  className="themebgColor text-white  position-absolute rounded-circle text-center d-flex align-items-center justify-content-center"
                   style={{
                     top: "2px",
                     right: "5px",
@@ -169,73 +180,93 @@ const CustomNavbar = () => {
               </Nav.Link>
             </div>
 
-            {userContext.isLogin && userContext.isAdmin && (
-              <>
-                <Nav.Link
-                  onClick={() => setExpanded(false)}
-                  as={NavLink}
-                  to={"/admin/home"}
-                >
-                  AdminDashboard
-                </Nav.Link>
-              </>
-            )}
+
             {userContext.isLogin && (
               <>
                 {" "}
-                <Nav.Link
+                {/* <Nav.Link
                   onClick={() => setExpanded(false)}
                   as={NavLink}
                   to={`users/profile/${userContext.userData.userId}`}
                 >
                   {userContext?.userData?.email}
-                </Nav.Link>
+                </Nav.Link> */}
                 {
-                  <Nav.Link
-                    onClick={() => setExpanded(false)}
-                    as={NavLink}
-                    to={"/users/orders-details"}
-                  >
-                    Orders
-                  </Nav.Link>
+                  // <Nav.Link
+                  //   onClick={() => setExpanded(false)}
+                  //   as={NavLink}
+                  //   to={"/users/orders-details"}
+                  // >
+                  //   <div className="d-flex align-items-center flex-column">
+                  //     <FaShippingFast style={{ fontSize: "30px", color: "black" }} />
+                  //     <span className="text-dark">   Orders</span>
+                  //   </div>
+                  // </Nav.Link>
                 }
                 <Nav.Link
-                  onClick={() => {
-                    logOut();
-                    setExpanded(false);
-                  }}
+                  className="d-flex align-items-center displayHiddenOnMobile nav-dn2"
                   as={NavLink}
                 >
-                  Logout
+                  <Dropdown align="end" className="d-flex flex-column custom-dropdown nav-dn2">
+                    <Dropdown.Toggle as="a" className="nav-link m-0 p-0 d-flex flex-column align-items-center" style={{ cursor: 'pointer' }}>
+                      <BsFillPersonFill size={30} className="me-2 text-dark" />
+                      <span>Account</span>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Header as={NavLink} to={`users/profile/${userContext.userData.userId}`}>John Doe</Dropdown.Header>
+                      <Dropdown.Item as={NavLink} to={"/users/orders-details"}>Orders</Dropdown.Item>
+                      <Dropdown.Item href="#/orders-by-referral">Orders by Referral</Dropdown.Item>
+                      {userContext.isLogin && userContext.isAdmin && (<Dropdown.Item onClick={() => setExpanded(false)}
+                        as={NavLink}
+                        to={"/admin/home"}>
+                        Admin Dashboard
+                      </Dropdown.Item>)}
+                      <Dropdown.Divider />
+                      <Dropdown.Item onClick={() => {
+                        logOut();
+                        setExpanded(false);
+                      }} >Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+
                 </Nav.Link>{" "}
               </>
             )}
 
             {!userContext.isLogin && (
               <>
+
                 {" "}
                 <Nav.Link
                   onClick={() => setExpanded(false)}
                   as={NavLink}
                   to={"/login"}
+                  className="displayHiddenOnMobile"
                 >
-                  Login
+                  <div className="d-flex flex-column align-items-center nav-dn2">
+                    <BsFillPersonFill style={{ fontSize: "30px" }} />
+                    <span> Login</span>
+                  </div>
+
                 </Nav.Link>
-                <Nav.Link
+                {/* <Nav.Link
                   onClick={() => setExpanded(false)}
                   as={NavLink}
                   to={"/register"}
                 >
                   Signup
-                </Nav.Link>{" "}
+                </Nav.Link>{" "} */}
               </>
             )}
           </Nav>
-        </Navbar.Collapse>
+        {/* </Navbar.Collapse> */}
         {<CartSideBar showCart={showCart} showCartSideBar={showCartSideBar} />}
         {/* </span> */}
       </Container>
     </Navbar>
+    
+    </>
   );
 };
 

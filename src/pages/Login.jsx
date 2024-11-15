@@ -157,24 +157,25 @@ export const Login = () => {
                     <Button
                       disabled={loading}
                       type="submit"
-                      className="mx-2"
+                      className="mx-2 themebgColor"
                       variant="success"
+
                     >
                       <Spinner size="sm" hidden={!loading}></Spinner>
                       <span hidden={!loading}>Wait..</span>
-                      <span hidden={loading}>Login</span>
+                      <span hidden={loading} >Login</span>
                     </Button>
 
-                    <Button variant="danger" onClick={clearFields}>
+                    <Button variant="outline-danger" className="themeBorderColor" onClick={clearFields}>
                       Reset
                     </Button>
                   </Container>
                   <Container className="text-center mt-3">
-                    <p>
-                      Forgot Password? <Link to={"/"}>click here</Link>
+                    <p className="themeColor">
+                      <Link className="themeColor" to={"/"}>Forgot Password?</Link>
                     </p>
-                    <p>
-                      Not Registered? <Link to={"/register"}>click here</Link>
+                    <p className="themeColor">
+                       <Link className="themeColor" to={"/register"}>Not Registered?</Link>
                     </p>
                   </Container>
                 </Form>
@@ -187,7 +188,7 @@ export const Login = () => {
   };
   return (
     <div>
-      <Base title="Electro  Store / Login" description={null}>
+      <Base title="JIVU / Login" description={null}>
         {loginJxs()}
       </Base>
     </div>

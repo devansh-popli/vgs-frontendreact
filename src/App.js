@@ -41,10 +41,13 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { MobileFooter } from "./components/MobileFooter";
 import TopNavbar from "./components/users/TopNavbar";
 import BelowNavbar from "./components/users/BelowNavbar";
+import LeftSidebar from "./components/users/LeftSidebar";
 
 function App() {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleSidebar = () => setIsOpen(!isOpen);
   useEffect(() => {
     privateAxios.interceptors.request.use(
       (config) => {
@@ -125,7 +128,8 @@ function App() {
             />
               <TopNavbar />
             <div className="sticky-top">
-              <CustomNavbar />
+              <CustomNavbar toggleSidebar={toggleSidebar}/>
+              <LeftSidebar toggleSidebar={toggleSidebar} isOpen={isOpen} setIsOpen={setIsOpen}/>
               <BelowNavbar />
             </div>
             <Loading show={loading} />
@@ -140,6 +144,7 @@ function App() {
               <Route path="/register" element={<Signup />} />
               <Route path="/store" element={<Store />} />
               <Route path="/products/:productId" element={<ProductView />} />
+              <Route path="/products/:productId/:referralId" element={<ProductView />} />
               <Route
                 path="/store/category/products/:categoryId/:categoryTitle"
                 element={<CategoryStorePage />}
@@ -148,7 +153,9 @@ function App() {
                 {/* <Route path="home" element={<Index />} /> */}
                 <Route path="profile/:userId" element={<Profile />} />
                 <Route path="about" element={<AboutUser />} />
-                <Route path="orders" element={<Orders />} />
+                <Route path="orders" element={<Orders/>} />
+                <Route path="referral/order-details" element={<LoadOrders isRefferalUser={true} />} />
+                <Route path="orders/:referralId" element={<Orders />} />
                 <Route path="orders-details" element={<LoadOrders />} />
                 <Route
                   path="orders/payment-success"

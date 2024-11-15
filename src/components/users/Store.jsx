@@ -62,7 +62,7 @@ const Store = () => {
                     <Col
                       className="d-flex justify-content-center "
                       key={product.productId}
-                      md={4}
+                      md={3}
                       lg={3}
                       sm={6}
                       xs={6}
@@ -81,18 +81,18 @@ const Store = () => {
   return (
     <Container fluid className=" pt-5">
       <Row>
-          <Container fluid className="d-flex justify-content-start">
+          {/* <Container fluid className="d-flex justify-content-start">
             <Breadcrumb className="ms-5">
-              <Breadcrumb.Item as={Link} to="/store">
+              <Breadcrumb.Item as={Link} to="/store" className="themeColor">
                 Store
               </Breadcrumb.Item>
               <Breadcrumb.Item>All Products</Breadcrumb.Item>
             </Breadcrumb>
-          </Container>
-        <Col md={2} className="sideproductview">
+          </Container> */}
+        {/* <Col md={2} className="sideproductview">
           <UserCategoryView imagepath={"../../assets/logo.png"} />
-        </Col>
-        <Col md={10}>{productsView()}</Col>
+        </Col> */}
+        <Col md={12}>{productsView()}</Col>
       </Row>
     </Container>
   );

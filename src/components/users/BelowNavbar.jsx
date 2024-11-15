@@ -19,7 +19,7 @@ const BelowNavbar = () => {
   }, []);
   return (
     <>
-      <div className=" displayHiddenOnMobile justify-content-center py-2 mb-1 border shadow bg-white">
+      <div className=" displayHiddenOnMobile justify-content-center py-2 mb-1 border shadow-sm bg-white">
         {" "}
         <Nav.Link className="nlink" as={NavLink} to={"/store"}>
           Store

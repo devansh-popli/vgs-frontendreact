@@ -6,13 +6,16 @@ import { BsFillBagCheckFill } from "react-icons/bs";
 import { AiFillMinusCircle } from "react-icons/ai";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { getProductImageUrl } from "../services/HelperService";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserContext } from "../context/UserContext";
 
 export const CartSideBar = ({ showCartSideBar, showCart }) => {
   const { cart, setCart, addItem, removeItemFromCart, clearCart } =
     useContext(CartContext);
+    const location = useLocation();
+
+    // Get a specific query parameter, e.g., 'id'
     const {isLogin}=useContext(UserContext)
   const ref = useRef();
   const navigate = useNavigate();
@@ -26,7 +29,7 @@ export const CartSideBar = ({ showCartSideBar, showCart }) => {
   return (
     <div
       ref={ref}
-      className="py-5  bg-secondary sidebar"
+      className="py-5  bg-light sidebar shadow"
       style={
         !showCart
           ? {
@@ -57,7 +60,7 @@ export const CartSideBar = ({ showCartSideBar, showCart }) => {
             }
       }
     >
-      <h4 className="fw-bold text-white border-bottom border-2 pb-3">
+      <h4 className="fw-bold text-dark border-bottom border-2 pb-3">
         Shopping Cart
       </h4>
       <span
@@ -138,18 +141,19 @@ export const CartSideBar = ({ showCartSideBar, showCart }) => {
       <Button
         variant="success"
         size="sm"
+        className="themebgColor"
         onClick={() => {
           if (!isLogin) {
             localStorage.setItem("redirectTo", "/users/orders");
           }
           toggleCart();
-          navigate("/users/orders");
+            navigate("/users/orders");
           // navigateToOrders;
         }}
       >
         <BsFillBagCheckFill className="mb-1 mx-1" /> Checkout
       </Button>
-      <Button onClick={clearCart} variant="danger" size="sm" className="mx-1">
+      <Button onClick={clearCart} variant="outline-secondary" size="sm" className="mx-1 themeBorderColor">
         Clear
       </Button>
     </div>

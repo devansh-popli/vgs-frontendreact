@@ -10,7 +10,11 @@ import { CartContext } from "../../context/CartContext";
 import { UserContext } from "../../context/UserContext";
 
 export const ProductView = () => {
-  const { productId } = useParams();
+  const { productId,referralId } = useParams();
+  if(referralId)
+  {
+    localStorage.setItem("referralId",referralId)
+  }
   const navigate=useNavigate()
   const { addItem, showCart, setShowCart, cart } = useContext(CartContext);
   const { isLogin } = useContext(UserContext);
@@ -74,6 +78,7 @@ export const ProductView = () => {
                 <div className="mt-3">
                   <Button
                     variant="info"
+                    className="themebgColor"
                     onClick={() => {
                       if (
                         (cart.items.filter(
@@ -89,7 +94,13 @@ export const ProductView = () => {
                         {
                           localStorage.setItem('redirectTo', '/users/orders');
                         }
-                        navigate("/users/orders")
+                        if(referralId)
+                        {
+                          navigate(`/users/orders/${referralId}`)
+                        }
+                        else{
+                          navigate(`/users/orders`)
+                        }
                       }
                     }}
                   >

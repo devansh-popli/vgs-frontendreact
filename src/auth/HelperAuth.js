@@ -5,7 +5,16 @@ export const doLoginLocalStorage = (data) => {
 };
 export const isAdminUser=()=>{
   if(isLoggedIn){
-    if(getUserFromLocalStorage()?.roles.find((role)=>role.roleId=='abcd1245'))
+    if(getUserFromLocalStorage()?.roles.find((role)=>role.roleName=='ROLE_ADMIN'))
+    {
+      return true;
+    }
+  }
+  return false;
+}
+export const isBusinessUserRole=()=>{
+  if(isLoggedIn){
+    if(getUserFromLocalStorage()?.roles.find((role)=>role.roleName=='ROLE_BUSINESS'))
     {
       return true;
     }
