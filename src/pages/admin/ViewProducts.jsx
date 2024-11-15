@@ -369,7 +369,7 @@ export const ViewProducts = () => {
                     });
                   }}
                   value={selectedProduct.description}
-                  apiKey="m7xx611kavpfmxl1jezk35tga7bjl3acnabcf2e2j6ckn83z"
+                  apiKey="ygzio9cpwms4p3496ok9m8bhghemkludtid6eu843sx6xtuc~"
                   onInit={(evt, editor) => (editorRef.current = editor)}
                   init={{
                     height: 500,
