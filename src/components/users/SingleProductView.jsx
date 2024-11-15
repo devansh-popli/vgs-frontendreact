@@ -3,6 +3,8 @@ import { Button, Card, Container } from "react-bootstrap";
 import { getProductImageUrl } from "../../services/HelperService";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import { CartContext } from "../../context/CartContext";
+import { toast } from "react-toastify";
 
 const SingleProductView = ({ product, width }) => {
   const navigate = useNavigate();
@@ -11,7 +13,7 @@ const SingleProductView = ({ product, width }) => {
     navigate(`/products/${product?.productId}`);
   };
   const userContext=useContext(UserContext)
-
+  const { addItem, showCart, setShowCart, cart } = useContext(CartContext);
   const copyToClipBoard=async (productId)=>{
     try {
       const url = `${window.location.origin}/products/${productId}/${userContext?.userData?.referralCode}`;
@@ -72,7 +74,22 @@ const SingleProductView = ({ product, width }) => {
         </div>
 }
         <div className="d-grid mb-2">
-          <Button size='sm' className='gradientBgColor text-dark font' variant={'success'}>Add to Cart</Button>
+          <Button onClick={() => {
+                      if (
+                        (cart.items.filter(
+                          (prod) => prod.product.productId == product.productId
+                        ).length == 0 &&
+                          product?.quantity > 0) ||
+                        cart?.items.filter(
+                          (prod) => prod.product.productId == product.productId
+                        )[0].quantity < product.quantity
+                      ) {
+                        addItem(product, 1);
+                        setShowCart(true);
+                      } else {
+                        toast.info("No more Quantity in Stock");
+                      }
+                    }} size='sm' className='gradientBgColor text-dark font' variant={'success'}>Add to Cart</Button>
         </div>
       </div>
     </Card>
