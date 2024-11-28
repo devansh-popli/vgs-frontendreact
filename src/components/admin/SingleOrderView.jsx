@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Col, Container, Row, Table } from "react-bootstrap";
+import { Badge, Button, Card, Col, Container, Row, Table } from "react-bootstrap";
 import { formatDate } from "../../services/HelperService";
 import { Link } from "react-router-dom";
 import { isAdminUser } from "../../auth/HelperAuth";
@@ -46,6 +46,14 @@ export const SingleOrderView = ({
                   <tr>
                     <td>Order Status</td>
                     <td>{order.orderStatus}</td>
+                  </tr>
+                  <tr>
+                    <td>Referred By</td>
+                    <td> <Badge bg={order?.childUser?.name &&"success" }>{order?.childUser?.name || 'You'}</Badge></td>
+                  </tr>
+                  <tr>
+                    <td>Your Earnings</td>
+                    <td> ₹ {order?.yourCommission}</td>
                   </tr>
                   <tr
                     className={

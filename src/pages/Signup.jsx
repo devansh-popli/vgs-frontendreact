@@ -130,7 +130,7 @@ export const Signup = () => {
                       placeholder="Re Enter Password"
                     />
                   </Form.Group>
-                  <Form.Group>
+                  <Form.Group className="mb-3">
                     <Form.Label>Select Gender </Form.Label>
                     <div>
                       <Form.Check
@@ -158,13 +158,21 @@ export const Signup = () => {
                       <Form.Control.Feedback type="invalid">{errorData?.errorData?.response?.data?.gender}</Form.Control.Feedback>
                     </div>
                   </Form.Group>
-                  <Form.Group as={Col} controlId="formAccountType">
+                  <Form.Group className="mb-3" as={Col} controlId="formAccountType">
                     <Form.Label>Account Type</Form.Label>
                     <Form.Control as="select" value={accountType} onChange={handleAccountTypeChange}>
                       <option value="User">User Account</option>
                       <option value="Business">Business Account</option>
                     </Form.Control>
                   </Form.Group>
+                  {
+accountType=='Business' &&
+                    <Form.Group className="mb-3" controlId="formBasicName">
+                    <Form.Label>Referred By Someone? Enter Referral Code</Form.Label>
+                    <Form.Control onChange={(event) => handleChange(event, 'parentReferralCode')} type="text" placeholder="Enter name" value={data.parentReferralCode} isInvalid={errorData.errorData?.response?.data?.parentReferralCode} />
+                    <Form.Control.Feedback type="invalid">{errorData?.errorData?.response?.data?.parentReferralCode}</Form.Control.Feedback>
+                  </Form.Group>
+                  }
                   <Form.Group className="mb-3" controlId="formBasicName">
 
                     <Form.Label>Write something about yourself</Form.Label>
