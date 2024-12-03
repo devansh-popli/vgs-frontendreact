@@ -216,7 +216,7 @@ const CustomNavbar = ({toggleSidebar}) => {
                     <Dropdown.Menu>
                       <Dropdown.Header as={NavLink} to={`users/profile/${userContext.userData.userId}`}>{userContext?.userData?.name}</Dropdown.Header>
                       <Dropdown.Item as={NavLink} to={"/users/orders-details"}>Orders</Dropdown.Item>
-                      <Dropdown.Item href="#/orders-by-referral">Orders by Referral</Dropdown.Item>
+                      { userContext.isBusinessUser && <Dropdown.Item href="#/orders-by-referral">Orders by Referral</Dropdown.Item>}
                       {userContext.isLogin && userContext.isAdmin && (<Dropdown.Item onClick={() => setExpanded(false)}
                         as={NavLink}
                         to={"/admin/home"}>

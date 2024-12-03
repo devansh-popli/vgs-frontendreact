@@ -11,7 +11,7 @@ import { formatDate, getProductImageUrl } from "../../services/HelperService";
 import { useLocation } from "react-router-dom";
 
 export const LoadOrders = ({ isRefferalUser }) => {
-  const { userData, isLogin } = useContext(UserContext);
+  const { userData, isLogin,isBusinessUser } = useContext(UserContext);
   const [ordersData, setOrdersData] = useState(null);
   const [show, setShow] = useState(false);
   const [showUpdate, setShowUpdate] = useState(false);
@@ -57,6 +57,7 @@ export const LoadOrders = ({ isRefferalUser }) => {
                     openViewOrderModel={openViewOrderModel}
                     key={order.orderId}
                     order={order}
+                    isBusinessUser={isBusinessUser}
                   />
                 );
               })}

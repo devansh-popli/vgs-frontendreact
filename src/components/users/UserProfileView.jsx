@@ -57,6 +57,19 @@ export const UserProfileView = ({ user = null, handleShowModal }) => {
                               {user?.referralCode}
                             </td>
                           </tr>
+                          <tr className="userprof">
+                            <td>Referral Earning</td>
+                            <td>
+                            <p className="text-muted">{user?.oneTimeReferralEarning || 0}</p>
+                            
+                            </td>
+                          </tr>
+                          <tr className="userprof">
+                            <td>Referral Earning to be sent on first Order</td>
+                            <td>
+                            <p className="text-muted">{user?.inActiveMoney || 0}</p>
+                            </td>
+                          </tr>
                         </tbody>
                       </Table>
                     </Card.Body>

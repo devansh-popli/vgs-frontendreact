@@ -12,7 +12,11 @@ export const Signup = () => {
     password: "",
     confirmPassword: "",
     about: "",
-    gender: ""
+    gender: "",
+    confirmBankAccountNumber:"",
+    bankAccountNumber:"",
+    ifscCode:"",
+    bankName:"",
   })
   const handleAccountTypeChange = (e) => {
     setAccountType(e.target.value);
@@ -39,7 +43,11 @@ export const Signup = () => {
       password: "",
       confirmPassword: "",
       about: "",
-      gender: ""
+      gender: "",
+      confirmBankAccountNumber:"",
+      bankAccountNumber:"",
+      ifscCode:"",
+      bankName:"",
     })
     setErrorData({
       isError: false,
@@ -52,19 +60,19 @@ export const Signup = () => {
     console.log(data)
     //validate client side
     if (data.name == undefined || data.name.trim() == '') {
-      toast.error("name cannot be blank")
+      toast.error("Name cannot be blank")
       return
     }
     if (data.email == undefined || data.email.trim() == '') {
-      toast.error("email cannot be blank")
+      toast.error("Email cannot be blank")
       return
     }
     if (data.password == undefined || data.password.trim() == '') {
-      toast.error("password cannot be blank")
+      toast.error("Password cannot be blank")
       return
     }
     if (data.confirmPassword == undefined || data.confirmPassword.trim() == '') {
-      toast.error("confirm password cannot be blank")
+      toast.error("Confirm password cannot be blank")
       return
     }
     if (data.confirmPassword != data.password) {
@@ -72,11 +80,32 @@ export const Signup = () => {
       toast.error("Password and Confirm password not matched !!")
       return
     }
+    if (accountType=='Business' && (data.confirmBankAccountNumber == undefined || data.confirmBankAccountNumber.trim() == '')) {
+      toast.error("Confirm Bank Account Number cannot be blank")
+      return
+    }
+    if (accountType=='Business' && (data.bankAccountNumber == undefined || data.bankAccountNumber.trim() == '')) {
+      toast.error("Bank Account Number cannot be blank")
+      return
+    }
+    if (accountType=='Business' && (data.ifscCode == undefined || data.ifscCode.trim() == '')) {
+      toast.error("ifsc Code cannot be blank")
+      return
+    }
+    if (accountType=='Business' &&  (data.bankName == undefined || data.bankName.trim() == '')) {
+      toast.error("Bank Name cannot be blank")
+      return
+    }
+    if (accountType=='Business' && (data.confirmBankAccountNumber != data.bankAccountNumber)) {
+      console.log(data)
+      toast.error("Bank Account Number and Confirm Bank Account Number not matched !!")
+      return
+    }
     setLoading(true)
-    data.accountType=accountType
+    data.accountType = accountType
     registerUser(data).then(response => {
       toast.success("User created successfully")
-
+      clearFields()
     }).catch(error => {
       console.log(error)
       toast.error("Error in creating user ! try again")
@@ -166,13 +195,85 @@ export const Signup = () => {
                     </Form.Control>
                   </Form.Group>
                   {
-accountType=='Business' &&
-                    <Form.Group className="mb-3" controlId="formBasicName">
-                    <Form.Label>Referred By Someone? Enter Referral Code</Form.Label>
-                    <Form.Control onChange={(event) => handleChange(event, 'parentReferralCode')} type="text" placeholder="Enter name" value={data.parentReferralCode} isInvalid={errorData.errorData?.response?.data?.parentReferralCode} />
-                    <Form.Control.Feedback type="invalid">{errorData?.errorData?.response?.data?.parentReferralCode}</Form.Control.Feedback>
-                  </Form.Group>
+                    accountType === 'Business' && (
+                      <>
+                        <Form.Group className="mb-3" controlId="formBasicName">
+                          <Form.Label>Referred By Someone? Enter Referral Code</Form.Label>
+                          <Form.Control
+                            onChange={(event) => handleChange(event, 'parentReferralCode')}
+                            type="text"
+                            placeholder="Enter referral code"
+                            value={data.parentReferralCode}
+                            isInvalid={errorData?.errorData?.response?.data?.parentReferralCode}
+                          />
+                          <Form.Control.Feedback type="invalid">
+                            {errorData?.errorData?.response?.data?.parentReferralCode}
+                          </Form.Control.Feedback>
+                        </Form.Group>
+
+                        {/* Bank Account Details */}
+                        <Form.Group className="mb-3" controlId="formAccountNumber">
+                          <Form.Label>Bank Account Number</Form.Label>
+                          <Form.Control
+                            onChange={(event) => handleChange(event, 'bankAccountNumber')}
+                            type="text"
+                            placeholder="Enter account number"
+                            value={data.bankAccountNumber}
+                            isInvalid={errorData?.errorData?.response?.data?.bankAccountNumber}
+                          />
+                          <Form.Control.Feedback type="invalid">
+                            {errorData?.errorData?.response?.data?.bankAccountNumber}
+                          </Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formConfirmAccountNumber">
+                          <Form.Label>Confirm Bank Account Number</Form.Label>
+                          <Form.Control
+                            onChange={(event) => handleChange(event, 'confirmBankAccountNumber')}
+                            type="text"
+                            placeholder="Re-enter account number"
+                            value={data.confirmBankAccountNumber}
+                            isInvalid={
+                              data.bankAccountNumber &&
+                              data.bankAccountNumber !== data.confirmBankAccountNumber
+                            }
+                          />
+                          <Form.Control.Feedback type="invalid">
+                            Account numbers do not match.
+                          </Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formIfscCode">
+                          <Form.Label>IFSC Code</Form.Label>
+                          <Form.Control
+                            onChange={(event) => handleChange(event, 'ifscCode')}
+                            type="text"
+                            placeholder="Enter IFSC code"
+                            value={data.ifscCode}
+                            isInvalid={errorData?.errorData?.response?.data?.ifscCode}
+                          />
+                          <Form.Control.Feedback type="invalid">
+                            {errorData?.errorData?.response?.data?.ifscCode}
+                          </Form.Control.Feedback>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formBankName">
+                          <Form.Label>Bank Name</Form.Label>
+                          <Form.Control
+                            onChange={(event) => handleChange(event, 'bankName')}
+                            type="text"
+                            placeholder="Enter bank name"
+                            value={data.bankName}
+                            isInvalid={errorData?.errorData?.response?.data?.bankName}
+                          />
+                          <Form.Control.Feedback type="invalid">
+                            {errorData?.errorData?.response?.data?.bankName}
+                          </Form.Control.Feedback>
+                        </Form.Group>
+                      </>
+                    )
                   }
+
                   <Form.Group className="mb-3" controlId="formBasicName">
 
                     <Form.Label>Write something about yourself</Form.Label>

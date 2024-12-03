@@ -57,11 +57,14 @@ function LeftSidebar({ toggleSidebar, isOpen }) {
                                     <FaBox className="me-2" /> Orders
                                 </Nav.Link>
                             </Nav.Item>
-                            <Nav.Item>
+                            {
+ userContext.isBusinessUser &&
+                                <Nav.Item>
                                 <Nav.Link onClick={ toggleSidebar} as={NavLink}to={"/users/referral/order-details"}  className=" customNavLink d-flex align-items-center">
                                     <FaUserFriends className="me-2" /> Orders by Referral
                                 </Nav.Link>
                             </Nav.Item>
+                            }
                         </>
                     )}
                     {userContext.isLogin && userContext.isAdmin &&

@@ -8,6 +8,7 @@ export const SingleOrderView = ({
   order,
   openViewOrderModel,
   openUpdateOrderModel,
+  isBusinessUser
 }) => {
   return (
     <div>
@@ -47,14 +48,18 @@ export const SingleOrderView = ({
                     <td>Order Status</td>
                     <td>{order.orderStatus}</td>
                   </tr>
-                  <tr>
-                    <td>Referred By</td>
-                    <td> <Badge bg={order?.childUser?.name &&"success" }>{order?.childUser?.name || 'You'}</Badge></td>
-                  </tr>
-                  <tr>
-                    <td>Your Earnings</td>
-                    <td> ₹ {order?.yourCommission}</td>
-                  </tr>
+                  {isBusinessUser &&
+                    <>
+                      <tr>
+                        <td>Referred By</td>
+                        <td> <Badge bg={order?.childUser?.name && "success"}>{order?.childUser?.name || 'You'}</Badge></td>
+                      </tr>
+                      <tr>
+                        <td>Your Earnings</td>
+                        <td> ₹ {order?.yourCommission}</td>
+                      </tr>
+                    </>
+                  }
                   <tr
                     className={
                       order.paymentStatus === "NOTPAID"
