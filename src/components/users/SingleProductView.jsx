@@ -89,7 +89,7 @@ const SingleProductView = ({ product, width }) => {
                       } else {
                         toast.info("No more Quantity in Stock");
                       }
-                    }} size='sm' className='gradientBgColor text-dark font' variant={'success'}>Add to Cart</Button>
+                    }} size='sm' className='gradientBgColor text-white font' variant={'success'}>Add to Cart</Button>
         </div>
       </div>
     </Card>

@@ -17,30 +17,33 @@ body {
 }
 
 .themeColor {
-  color: #80dbde !important;
-  text-decoration-color: #80dbde !important;
+  color: #d4400f!important;
+  text-decoration-color: #d4400f!important;
 }
 
 .themeBorderColor {
-  border-color: #80dbde !important;
-  color: #80dbde !important;
+  border-color: #d4400f!important;
+  color: #d4400f!important;
 }
 
 .themeBorderColor:hover {
-  background-color: #80dbde !important;
+  background-color: #d4400f!important;
   color: white !important;
 }
 
 .gradientBgColor {
-  background: linear-gradient(to right, #dff6f7, #a6e8ea, #80dbde) !important;
+  /* background: linear-gradient(to right, #dff6f7, #a6e8ea, #80dbde) !important; */
+  /* background: linear-gradient(115deg, #24365c, #4a6b8c) !important; */
+  background: linear-gradient(115deg, #142b5c, #4b6c9b) !important;
+  /* background-color: #142a5a !important; */
   opacity: 0.75 !important;
   /* filter: blur(5px) !important; */
   border: 0px !important;
 }
 
 .themebgColor {
-  background-color: #80dbde !important;
-  border: #80dbde !important;
+  background-color: #d4400f!important;
+  border: #d4400f!important;
 }
 
 .bg-tone {
@@ -62,7 +65,7 @@ body {
 }
 
 .themeColorBg {
-  background-color: #80dbde !important;
+  background-color: #d4400f!important;
 }
 
 .list-group-item.active {

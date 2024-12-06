@@ -12,7 +12,13 @@ export const Footer = () => {
       <Container>
         <Row className="text-center">
           <Col>
-            <h4 className='fw-bold'>Brand Name</h4>
+          <img
+            src="../../assets/marketmixlogo.png"
+            alt="logo"
+            height={75}
+            width={125}
+          />
+            {/* <h4 className='fw-bold'>Brand Name</h4> */}
             <p>A short description of your brand</p>
             <p>Contact Email: example@example.com</p>
           </Col>

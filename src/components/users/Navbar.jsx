@@ -58,12 +58,12 @@ const CustomNavbar = ({toggleSidebar}) => {
           className="d-flex justify-content-center align-items-center"
         >
           <img
-            src="../../assets/logo.png"
+            src="../../assets/marketmixlogo.png"
             alt="logo"
-            height={25}
-            width={25}
+            height={75}
+            width={125}
           />
-          <span className="ms-2">JIVU</span>
+          {/* <span className="ms-2">JIVU</span> */}
         </Navbar.Brand>
         {/* <span fluid className="d-flex"> */}
         <div className="d-flex">
