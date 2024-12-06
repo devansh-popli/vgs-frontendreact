@@ -52,6 +52,7 @@ const CustomNavbar = ({toggleSidebar}) => {
     >
       <Container fluid>
         <HiMiniBars3 size={30} className="me-2"onClick={toggleSidebar}/>
+        <div className="brand">
         <Navbar.Brand onClick={() => setExpanded(false)}
           as={NavLink}
           to={"/"}
@@ -65,6 +66,7 @@ const CustomNavbar = ({toggleSidebar}) => {
           />
           {/* <span className="ms-2">JIVU</span> */}
         </Navbar.Brand>
+        </div>
         {/* <span fluid className="d-flex"> */}
         <div className="d-flex">
           <div className="nav-dn1">
@@ -183,31 +185,11 @@ const CustomNavbar = ({toggleSidebar}) => {
 
             {userContext.isLogin && (
               <>
-                {" "}
-                {/* <Nav.Link
-                  onClick={() => setExpanded(false)}
-                  as={NavLink}
-                  to={`users/profile/${userContext.userData.userId}`}
-                >
-                  {userContext?.userData?.email}
-                </Nav.Link> */}
-                {
-                  // <Nav.Link
-                  //   onClick={() => setExpanded(false)}
-                  //   as={NavLink}
-                  //   to={"/users/orders-details"}
-                  // >
-                  //   <div className="d-flex align-items-center flex-column">
-                  //     <FaShippingFast style={{ fontSize: "30px", color: "black" }} />
-                  //     <span className="text-dark">   Orders</span>
-                  //   </div>
-                  // </Nav.Link>
-                }
                 <Nav.Link
                   className="d-flex align-items-center displayHiddenOnMobile nav-dn2"
                   as={NavLink}
                 >
-                  <Dropdown align="end" className="d-flex flex-column custom-dropdown nav-dn2">
+                  <Dropdown align="end" className=" flex-column custom-dropdown nav-dn2">
                     <Dropdown.Toggle as="a" className="nav-link m-0 p-0 d-flex flex-column align-items-center" style={{ cursor: 'pointer' }}>
                       <BsFillPersonFill size={30} className="me-2 text-dark" />
                       <span>Account</span>

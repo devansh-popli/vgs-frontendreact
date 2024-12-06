@@ -227,15 +227,15 @@ body {
 
   .nav-dn2 {
     display: none !important;
-    visibility: hidden;
+    /* visibility: hidden; */
   }
 
-  .navv2 {
-    display: flex;
+  /* .navv2 {
+    /* display: flex; 
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+  } */
 
   .dropdownNav1 {
     display: none;
@@ -304,6 +304,12 @@ body {
 }
 
 @media (max-width: 600px) {
+  .brand{
+   min-width: 80%;
+    display: flex !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
   .displayHiddenOnMobile {
     display: none !important;
   }
@@ -333,6 +339,7 @@ body {
 }
 
 @media (max-width: 400px) {
+ 
   .displayHiddenOnMobile {
     display: none !important;
   }
