@@ -29,7 +29,7 @@ export const CartSideBar = ({ showCartSideBar, showCart }) => {
   return (
     <div
       ref={ref}
-      className="py-5  bg-light sidebar shadow"
+      className="py-5  bg-light sidebar shadow rightSidebar"
       style={
         !showCart
           ? {

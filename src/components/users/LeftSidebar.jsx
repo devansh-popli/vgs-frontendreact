@@ -27,7 +27,7 @@ function LeftSidebar({ toggleSidebar, isOpen }) {
         setCart({ items: [] });
     };
     return (
-        <div className={`fullscreen-sidebar ${isOpen ? 'show' : ''}`}>
+        <div className={`leftSidebar fullscreen-sidebar ${isOpen ? 'show' : ''}`}>
             <Button variant="link" className="close-btn text-dark" onClick={toggleSidebar}>
                 <FaTimes size={24} />
             </Button>
