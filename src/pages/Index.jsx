@@ -119,7 +119,7 @@ export const Index = () => {
         </Badge>
       </Container> */}
       <Carousel
-        className="hero-section px-3"
+        className="hero-section px-3 zindex"
         fade
         variant="dark"
         nextIcon={

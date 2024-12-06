@@ -28,7 +28,7 @@ export const MobileFooter = () => {
     <Navbar
       fixed="bottom"
       bg="light"
-      className="justify-content-around nav-bottom m-0 p-0 py-2 mobFooter"
+      className="zindex2 justify-content-around nav-bottom m-0 p-0 py-2 mobFooter"
     >
       <Nav.Item>
         <Nav.Link
@@ -59,7 +59,7 @@ export const MobileFooter = () => {
           <div>
             <HiOutlineShoppingBag style={{ fontSize: "28px" }} />{" "}
             <span
-              className="bg-success text-white  position-absolute rounded-circle text-center d-flex align-items-center justify-content-center"
+              className="themebgColor text-white  position-absolute rounded-circle text-center d-flex align-items-center justify-content-center"
               style={{
                 top: "-8px",
                 right: "-2px",

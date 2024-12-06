@@ -178,9 +178,9 @@ body {
   transition: transform 0.2s ease-out;
 }
 
-.mobFooter {
-  z-index: 0 !important;
-}
+/* .mobFooter {
+  /* z-index: 0 !important; 
+} */
 
 @keyframes zoomIn {
   0% {
@@ -457,4 +457,10 @@ body {
   color: #fff;
   /* Set the desired text color */
   z-index: 1;
+}
+.zindex2{
+  z-index: 100000 !important;
+}
+.zindex{
+  z-index: 1 !important;
 }
