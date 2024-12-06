@@ -64,9 +64,10 @@ export const CategoryStorePage = () => {
                   <Col
                     className="d-flex justify-content-center "
                     key={product.productId}
-                    md={2}
+                    md={3}
                     lg={3}
                     sm={6}
+                    xs={6}
                   >
                     <SingleProductView product={product} />
                   </Col>
