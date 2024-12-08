@@ -82,7 +82,7 @@ export const Footer = () => {
             />
           </Col> */}
         </Row>
-        <Row className="text-center mt-5 py-4 d-flex align-items-center" style={{ borderTop: "0.1px solid rgba(255, 255, 255, 0.5)" }}        >
+        <Row className="text-center mt-5 py-4 d-flex flex-wrap   align-items-center" style={{ borderTop: "0.1px solid rgba(255, 255, 255, 0.5)" }}        >
           <Col className='d-flex justify-content-start'>
             <IconContext.Provider value={{ size: '2em' }}>
               <div className='d-flex justify-content-center align-items-center'>
