@@ -9,18 +9,19 @@ const CategoriesSection = () => {
       fluid
       className="py-5 d-flex justify-content-center align-items-center"
       style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1650803318792-6781b4884a20?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+        backgroundImage: "url('../../bagwati.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         minHeight: '500px',
-        color: '#fff'
+        color: '#fff',
+        // opacity:"0.6"
       }}
     >
-      <Container>
-        <Row className="text-center mb-5">
-          <Col>
-            <h2 className="display-4" style={{ color: '#fff' }}>Shop By Category</h2>
+      <Container className='opac'>
+        <Row className="text-center ">
+          <Col className='section-top'>
+            <h2 className="display-4" >Shop By Category</h2>
             <p className="lead" style={{ color: '#f1f1f1' }}>Explore our handpicked collections</p>
           </Col>
         </Row>

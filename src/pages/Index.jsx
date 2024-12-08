@@ -30,7 +30,7 @@ export const Index = () => {
       .catch((error) => {
         toast.error("Error while getting products");
       });
-      getLiveProducts(0, 5, "addedDate", "asc")
+    getLiveProducts(0, 5, "addedDate", "asc")
       .then((data) => {
         setRecommendedProducts(data.content);
       })
@@ -119,7 +119,7 @@ export const Index = () => {
         </Badge>
       </Container> */}
       <Carousel
-        className="hero-section px-3 zindex"
+        className="hero-section p-0 m-0 zindex"
         fade
         variant="dark"
         nextIcon={
@@ -177,9 +177,8 @@ export const Index = () => {
                   variant="light"
                   as={Link}
                   to={"/store"}
-                  className={`rounded fw-bold text-capitalize zoom-button themebgColor text-white ${
-                    isScrollingDown ? "" : "hide-button"
-                  }`}
+                  className={`rounded fw-bold text-capitalize zoom-button themebgColor text-white ${isScrollingDown ? "" : "hide-button"
+                    }`}
                 >
                   Shop Now
                 </Button>
@@ -188,23 +187,25 @@ export const Index = () => {
           </Carousel.Item>
         ))}
       </Carousel>
-      <Container fluid className="my-4">
+      <Container fluid className="new-section">
         {trendingCollections(categories.content)}
       </Container>
-      <div fluid className=" my-4">
-        {trendingProducts(recentProducts, handleSelect, index,'Best Selling Products')}
+      <div className="mt-5 ">
+        <CategoriesSection />
+      </div>
+      <div fluid className=" new-section">
+        {trendingProducts(recentProducts, handleSelect, index, 'Best Selling Products')}
       </div>
 
-      <div className="mt-5 ">
-        <CategoriesSection/>
-      </div>
-      <div fluid className=" my-4">
-        {trendingProducts(recentProducts, handleSelect, index,'Recommended for You')}
-      </div>
+
+
       {/* <div>
         <AboutUs />
       </div> */}
       <div>{creativeSection()}</div>
+      <div fluid className="new-section">
+        {trendingProducts(recentProducts, handleSelect, index, 'Recommended for You')}
+      </div>
     </>
   );
 };

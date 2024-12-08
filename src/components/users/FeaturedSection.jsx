@@ -5,11 +5,11 @@ import { FaShippingFast, FaCreditCard, FaHeadset } from 'react-icons/fa';
 
 const FeaturedSection = () => {
   return (
-    <Container fluid className="py-5" style={{ backgroundColor: '#f8f9fa' }}>
+    <Container fluid className="new-section" >
       <Container>
-        <Row className="text-center mb-4">
-          <Col>
-            <h2 className="display-4" style={{ color: '#333' }}>Why Shop With Us</h2>
+        <Row className="text-center ">
+          <Col className='section-top'>
+            <h2 className="display-4 m-0" style={{ color: '#333' }}>Why Shop With Us</h2>
             <p className="lead text-muted">Discover what makes us unique and why our customers love shopping with us.</p>
           </Col>
         </Row>
@@ -55,7 +55,7 @@ const FeaturedSection = () => {
           </Col>
         </Row>
 
-        <Row className="text-center mt-5">
+        <Row className="text-center ">
           <Col>
             <Button variant="primary" className='themebgColor' size="lg">Shop Now</Button>
           </Col>

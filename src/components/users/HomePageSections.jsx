@@ -132,7 +132,7 @@ export const trendingProducts = (products=[], handleSelect, index,text) => {
     <SingleProductView id={product?.productId} product={product} />))
   return (
     <Container fluid>
-      <Col>
+      <Col className='section-top'>
         <h2 className="display-4 text-center mb-3" style={{ color: '#333' }}>{text}</h2>
         {/* <p className="lead text-muted text-center ">Discover what makes us unique and why our customers love shopping with us.</p> */}
       </Col>
@@ -181,7 +181,7 @@ export const trendingProducts = (products=[], handleSelect, index,text) => {
 export const trendingCollections = (categories) => {
   return (
     <Container>
-      <Col>
+      <Col className="section-top">
         <h2 className="display-4 text-center" style={{ color: '#333' }}>Collections</h2>
         <p className="lead text-muted text-center ">Discover what makes us unique and why our customers love shopping with us.</p>
       </Col>
@@ -264,7 +264,7 @@ export const infoWithImageInLeftSection = (image, text, title) => {
 };
 export const creativeSection = (image, text, title) => {
   return (
-    <section className="creative-section">
+    <section className="creative-section bgColor" >
       <Container>
         <FeaturedSection />
       </Container>
