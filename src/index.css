@@ -302,6 +302,7 @@ body {
   .d{
     display: flex;
     justify-content: center !important;
+    margin: 0px 2rem;
     flex-wrap: wrap;
   }
   .singleProd {
