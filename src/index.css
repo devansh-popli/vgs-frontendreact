@@ -299,6 +299,11 @@ body {
 }
 
 @media (max-width: 768px) {
+  .d{
+    display: flex;
+    justify-content: center !important;
+    flex-wrap: wrap;
+  }
   .singleProd {
     width: 250px !important;
   }

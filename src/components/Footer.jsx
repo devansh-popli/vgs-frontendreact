@@ -24,7 +24,7 @@ export const Footer = () => {
             <img
               src="../../marketmixlogofooter.png"
               alt="logo"
-              style={{ maxWidth: "20%" }}
+              style={{ maxWidth: "20%",minWidth:"130px" }}
             />
             {/* <h4 className='fw-bold'>Brand Name</h4> */}
             <ul className='d-flex flex-wrap mt-4 justify-content-center' style={{ listStyle: "none",margin:"0 2rem" }}>
@@ -82,8 +82,8 @@ export const Footer = () => {
             />
           </Col> */}
         </Row>
-        <Row className="text-center mt-5 py-4 d-flex flex-wrap   align-items-center" style={{ borderTop: "0.1px solid rgba(255, 255, 255, 0.5)" }}        >
-          <Col className='d-flex justify-content-start'>
+        <Row className="text-center mt-5 py-4 d-flex flex-wrap justify-content-between  align-items-center" style={{ borderTop: "0.1px solid rgba(255, 255, 255, 0.5)" }}        >
+          <Col className=''>
             <IconContext.Provider value={{ size: '2em' }}>
               <div className='d-flex justify-content-center align-items-center'>
                 <a
@@ -112,7 +112,7 @@ export const Footer = () => {
             </IconContext.Provider>
           
           </Col>
-          <Col className='d-flex justify-content-end'>
+          <Col className='d'>
             <p>All Rights Reserved &copy; {new Date().getFullYear()}</p>
           </Col>
         </Row>
