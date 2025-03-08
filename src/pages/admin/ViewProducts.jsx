@@ -373,7 +373,7 @@ export const ViewProducts = () => {
               onChange={(content) =>
                 setSelectedProduct({
                   ...selectedProduct,
-                  description: editorRef.current.getContent(),
+                  description: content,
                 })
               }
               modules={{
