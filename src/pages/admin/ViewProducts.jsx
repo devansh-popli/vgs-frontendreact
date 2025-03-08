@@ -57,14 +57,6 @@ export const ViewProducts = () => {
         UpdateCategoryInProduct(selectedProduct, selectedCategoryId)
           .then((data) => {
             toast.success("product updated successfully");
-            products.content
-              .filter(
-                (product) => product.productId === selectedProduct.productId
-              )
-              .map((product) => {
-                Object.assign(product, data);
-                return product;
-              });
             if (selectedProduct.image) {
               addProductImage(selectedProduct.image, selectedProduct.productId)
                 .then((data) => {
@@ -77,6 +69,17 @@ export const ViewProducts = () => {
                   // handleProductUpdateClose()
                 });
             }
+            products.content
+              .filter(
+                (product) => product.productId === selectedProduct.productId
+              )
+              .map((product) => {
+                Object.assign(product, data);
+                if(selectedProduct.image){
+                  product.productImages=selectedProduct.image
+                }
+                return product;
+              });
           })
           .catch((error2) => {
             toast.error("error occured while updating category");
@@ -144,28 +147,29 @@ export const ViewProducts = () => {
     });
   };
   const handleFileChange = (event) => {
-    const localFile = event.target.files[0];
-    if (
-      localFile?.type === "image/png" ||
-      localFile?.type === "image/jpeg" ||
-      localFile?.type === "image/jpg"
-    ) {
-      const reader = new FileReader();
-      reader.onload = (r) => {
-        setSelectedProduct({
-          ...selectedProduct,
-          placeholder: r.target.result,
-          image: localFile,
-        });
-      };
-      reader.readAsDataURL(localFile);
-    } else {
-      toast.error("Invalid File Format only jpeg/jpg/png allowed");
-      setSelectedProduct({
-        ...selectedProduct,
-        image: null,
-        placeholder: null,
-      });
+    const localFiles = Array.from(event.target.files);
+    if (localFiles) {
+      console.log(localFiles)
+      localFiles?.forEach(localFile => {
+        if (
+          localFile.type === "image/png" ||
+          localFile.type === "image/jpeg" ||
+          localFile.type === "image/jpg"
+        ) {
+          const reader = new FileReader();
+          reader.onload = (r) => {
+            setSelectedProduct((prevProduct) => ({
+              ...prevProduct,
+              placeholder: [...(prevProduct?.placeholder || []), r.target.result],
+              image: [...(prevProduct.image || []), localFile],
+            }));
+          };
+          reader.readAsDataURL(localFile);
+        } else {
+          toast.error("Invalid File Format only jpeg/jpg/png allowed");
+          setSelectedProduct({ ...selectedProduct, image: null, placeholder: null });
+        }
+      })
     }
   };
   const getProducts = (pageNumber, pageSize) => {
@@ -209,7 +213,7 @@ export const ViewProducts = () => {
               setProducts({
                 ...products,
                 content: products.content.filter(
-                  (product) => selectedProduct.productId != productId
+                  (product) => product.productId != productId
                 ),
               });
               swalWithBootstrapButtons.fire(
@@ -489,6 +493,7 @@ export const ViewProducts = () => {
                     <Form.Control
                       onChange={(event) => handleFileChange(event)}
                       type="file"
+                      multiple
                     />
                     <Button
                       variant="outline-secondary"
@@ -558,7 +563,7 @@ export const ViewProducts = () => {
                     <Form.Control
                       onChange={(event) => {
                         if (event.target.value.trim() === "") {
-                           setSearchQuery('')
+                          setSearchQuery('')
                           // console.log(prevProducts)
                           setProducts(prevProducts);
                         } else {
@@ -589,6 +594,7 @@ export const ViewProducts = () => {
                     <th className="px-3 small">Stock</th>
                     <th className="px-3 small">Category</th>
                     <th className="px-3 small">Date</th>
+                    <th className="px-3 small">Images</th>
                   </thead>
                   <tbody>
                     {products?.content.map((product, i) => {
@@ -626,6 +632,9 @@ export const ViewProducts = () => {
                           </td>
                           <td className="px-3 small">
                             {formatDate(product?.addedDate)}
+                          </td>
+                          <td className="px-3 small">
+                            {product?.productImages.length}
                           </td>
                           <td className="small">
                             <Button

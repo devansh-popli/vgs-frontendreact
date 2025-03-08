@@ -38,32 +38,37 @@ export const AddProducts = () => {
     discountedPrice: 0,
     live: false,
     stock: true,
-    image: undefined,
-    placeholder: undefined,
+    image: [],
+    placeholder: [],
   });
   const [selectedCategoryId, setSelectedCategoryId] = useState("none");
   const handleField = (event) => {
     setProduct({ ...product, [event.target.name]: event.target.value });
   };
   const handleFileChange = (event) => {
-    const localFile = event.target.files[0];
-    if (
-      localFile.type === "image/png" ||
-      localFile.type === "image/jpeg" ||
-      localFile.type === "image/jpg"
-    ) {
-      const reader = new FileReader();
-      reader.onload = (r) => {
-        setProduct({
-          ...product,
-          placeholder: r.target.result,
-          image: localFile,
-        });
-      };
-      reader.readAsDataURL(localFile);
-    } else {
-      toast.error("Invalid File Format only jpeg/jpg/png allowed");
-      setProduct({ ...product, image: null, placeholder: null });
+    const localFiles = Array.from(event.target.files);
+    if (localFiles) {
+      console.log(localFiles)
+      localFiles?.forEach(localFile => {
+        if (
+          localFile.type === "image/png" ||
+          localFile.type === "image/jpeg" ||
+          localFile.type === "image/jpg"
+        ) {
+          const reader = new FileReader();
+          reader.onload = (r) => {
+            setProduct((prevProduct) => ({
+              ...prevProduct,
+              placeholder: [...(prevProduct?.placeholder || []), r.target.result],
+              image: [...(prevProduct.image || []), localFile],
+            }));
+          };
+          reader.readAsDataURL(localFile);
+        } else {
+          toast.error("Invalid File Format only jpeg/jpg/png allowed");
+          setProduct({ ...product, image: null, placeholder: null });
+        }
+      })
     }
   };
   const clearForm = () => {
@@ -111,7 +116,7 @@ export const AddProducts = () => {
           }
           addProductImage(product.image, data.productId)
             .then((res) => {
-              toast.success("Product image uploaded successfully");
+              toast.success("Product images uploaded successfully");
               setProduct({
                 title: "",
                 description: "",
@@ -141,7 +146,7 @@ export const AddProducts = () => {
           }
           addProductImage(product.image, data.productId)
             .then((res) => {
-              toast.success("Product image uploaded successfully");
+              toast.success("Product images uploaded successfully");
               setProduct({
                 title: "",
                 description: "",
@@ -168,7 +173,7 @@ export const AddProducts = () => {
   const formView = () => {
     return (
       <Card className="shadow border-0 mt-4">
-       {/* {(product.price < product.discountedPrice)+''} */}
+        {/* {(product.price < product.discountedPrice)+''} */}
         {/* {JSON.stringify(product)} */}
         <Card.Body>
           <h3>Add Product Here</h3>
@@ -299,22 +304,30 @@ export const AddProducts = () => {
             <Form.Group className="mb-3">
               <Container className="text-center py-3 border" fluid>
                 <p className="text-muted">Image Preview</p>
-                <img
-                  className="img-fluid"
-                  style={{
-                    objectFit: "contain",
-                    maxHeight: "250px",
-                    width: "100%",
-                  }}
-                  src={product.placeholder}
-                  alt=""
-                />
+                {
+
+                  product?.placeholder?.forEach((placeholder, i) => (
+                    <img
+                      key={i}
+                      className="img-fluid"
+                      style={{
+                        objectFit: "contain",
+                        maxHeight: "250px",
+                        width: "100%",
+                      }}
+                      src={placeholder}
+                      alt=""
+                    />
+                  ))
+                }
+
               </Container>
               <Form.Label>Select Product Image</Form.Label>
               <InputGroup>
                 <Form.Control
                   onChange={(event) => handleFileChange(event)}
                   type="file"
+                  multiple
                 />
                 <Button
                   variant="outline-secondary"

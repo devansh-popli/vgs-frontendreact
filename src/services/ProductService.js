@@ -10,15 +10,20 @@ export const createProductInCategory = (product, categoryId) => {
     .post(`/categories/${categoryId}/products`, product)
     .then((response) => response.data);
 };
-export const addProductImage = (file, productId) => {
+export const addProductImage = (files, productId) => {
   const formData = new FormData();
-  formData.append("ProductImage", file);
+  files.forEach((file) => {
+    formData.append("ProductImages", file);
+  });
   return privateAxios
     .post(`/products/image/${productId}`, formData)
     .then((response) => response.data);
 };
 export const getAllProducts=(pageNumber=0,pageSize=10,sortBy="addedDate",sortDir="asc")=>{
     return privateAxios.get(`/products?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}&sortDir=${sortDir}`).then(res=>res.data);
+}
+export const getAllProductImages=(productId)=>{
+  return privateAxios.get(`/products/image/${productId}`).then(res=>res.data);
 }
 export const getAllProductsOfCategories=(categoryId,pageNumber=0,pageSize=10,sortBy="addedDate",sortDir="asc")=>{
     return privateAxios.get(`/categories/${categoryId}/products?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}&sortDir=${sortDir}`).then(res=>res.data);

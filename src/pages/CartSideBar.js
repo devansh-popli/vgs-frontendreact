@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { CartContext } from "../context/CartContext";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { AiFillPlusCircle } from "react-icons/ai";
@@ -9,6 +9,8 @@ import { getProductImageUrl } from "../services/HelperService";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserContext } from "../context/UserContext";
+import { getAllProductImages } from "../services/ProductService";
+import ProductImage from "../components/ProductImage";
 
 export const CartSideBar = ({ showCartSideBar, showCart }) => {
   const { cart, setCart, addItem, removeItemFromCart, clearCart } =
@@ -26,6 +28,7 @@ export const CartSideBar = ({ showCartSideBar, showCart }) => {
     toggleCart();
     navigate("/users/orders");
   };
+  
   return (
     <div
       ref={ref}
@@ -82,14 +85,7 @@ export const CartSideBar = ({ showCartSideBar, showCart }) => {
                         xs={2}
                         className=" d-flex justify-content-center align-items-center"
                       >
-                        <img
-                          className="rounded"
-                          style={{ objectFit: "cover" }}
-                          height={60}
-                          width={60}
-                          src={getProductImageUrl(item?.product?.productId)}
-                          alt=""
-                        />
+                       <ProductImage productId={item?.product?.productId}/>
                       </Col>
                       <Col xs={7}>
                         <small className="d-flex justify-content-center align-items-center">
