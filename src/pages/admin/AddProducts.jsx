@@ -9,13 +9,15 @@ import {
   Row,
 } from "react-bootstrap";
 import { toast } from "react-toastify";
+import "react-quill/dist/quill.snow.css"; // Required for styling
+
 import {
   addProductImage,
   createProductInCategory,
   createProductWithoutCategory,
 } from "../../services/ProductService";
-import { Editor } from "@tinymce/tinymce-react";
 import { getCategories } from "../../services/CategoryService";
+import ReactQuill from "react-quill";
 
 export const AddProducts = () => {
   const editorRef = useRef(null);
@@ -199,7 +201,23 @@ export const AddProducts = () => {
                 placeholder="Enter here"
               />
             </Form.Group> */}
-            <Editor
+            <ReactQuill
+              theme="snow"
+              value={product.description}
+              onChange={(content) =>
+                setProduct((prev) => ({ ...prev, description: content }))
+              }
+              modules={{
+                toolbar: [
+                  [{ header: [1, 2, false] }],
+                  ["bold", "italic", "underline", "strike"],
+                  [{ list: "ordered" }, { list: "bullet" }],
+                  ["link", "image"],
+                  ["clean"],
+                ],
+              }}
+            />
+            {/* <Editor
               onEditorChange={(event) => {
                 setProduct({
                   ...product,
@@ -239,7 +257,7 @@ export const AddProducts = () => {
                 content_style:
                   "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
               }}
-            />
+            /> */}
             <Row>
               <Col>
                 <Form.Group className="mb-3">

@@ -19,6 +19,7 @@ import {
   updateProduct,
   searchProductsApi,
 } from "../../services/ProductService";
+import "react-quill/dist/quill.snow.css"; // Required for styling
 import { toast } from "react-toastify";
 import { MdDelete, MdModelTraining } from "react-icons/md";
 import { MdRemoveRedEye } from "react-icons/md";
@@ -28,6 +29,7 @@ import { BASE_URL, getProductImageUrl } from "../../services/HelperService";
 import { ShowHtml } from "../../components/ShowHtml";
 import { Editor } from "@tinymce/tinymce-react";
 import { getCategories } from "../../services/CategoryService";
+import ReactQuill from "react-quill";
 
 export const ViewProducts = () => {
   const [products, setProducts] = useState(null);
@@ -365,48 +367,25 @@ export const ViewProducts = () => {
                 placeholder="Enter here"
               />
             </Form.Group> */}
-                <Editor
-                  onEditorChange={(event) => {
-                    setSelectedProduct({
-                      ...selectedProduct,
-                      description: editorRef.current.getContent(),
-                    });
-                  }}
-                  value={selectedProduct.description}
-                  apiKey="ygzio9cpwms4p3496ok9m8bhghemkludtid6eu843sx6xtuc~"
-                  onInit={(evt, editor) => (editorRef.current = editor)}
-                  init={{
-                    height: 500,
-                    menubar: true,
-                    plugins: [
-                      "advlist",
-                      "autolink",
-                      "lists",
-                      "link",
-                      "image",
-                      "charmap",
-                      "preview",
-                      "anchor",
-                      "searchreplace",
-                      "visualblocks",
-                      "code",
-                      "fullscreen",
-                      "insertdatetime",
-                      "media",
-                      "table",
-                      "code",
-                      "help",
-                      "wordcount",
-                    ],
-                    toolbar:
-                      "undo redo | blocks | " +
-                      "bold italic forecolor | alignleft aligncenter " +
-                      "alignright alignjustify | bullist numlist outdent indent | " +
-                      "removeformat | help",
-                    content_style:
-                      "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-                  }}
-                />
+               <ReactQuill
+              theme="snow"
+              value={selectedProduct.description}
+              onChange={(content) =>
+                setSelectedProduct({
+                  ...selectedProduct,
+                  description: editorRef.current.getContent(),
+                })
+              }
+              modules={{
+                toolbar: [
+                  [{ header: [1, 2, false] }],
+                  ["bold", "italic", "underline", "strike"],
+                  [{ list: "ordered" }, { list: "bullet" }],
+                  ["link", "image"],
+                  ["clean"],
+                ],
+              }}
+            />
                 <Row>
                   <Col>
                     <Form.Group className="mb-3">
