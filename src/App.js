@@ -8,7 +8,6 @@ import Dashboard from "./pages/users/Dashboard";
 import Profile from "./pages/users/Profile";
 import AboutUser from "./pages/users/AboutUser";
 import CustomNavbar from "./components/users/Navbar";
-import ContactUs from "./pages/ContactUs";
 import { ToastContainer, Zoom, toast } from "react-toastify";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
@@ -42,6 +41,12 @@ import { MobileFooter } from "./components/MobileFooter";
 import TopNavbar from "./components/users/TopNavbar";
 import BelowNavbar from "./components/users/BelowNavbar";
 import LeftSidebar from "./components/users/LeftSidebar";
+import TermsAndConditions from "./pages/users/TermsAndConditions";
+import RefundPolicy from "./pages/users/RefundPolicy";
+import ShippingPolicy from "./pages/users/ShippingPolicy";
+import PrivacyPolicy from "./pages/users/PrivacyPolicy";
+import ContactUs from "./pages/users/ContactUs";
+import ScrollToTop from "./auth/ScrollToTop";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -133,13 +138,14 @@ function App() {
               <BelowNavbar />
             </div>
             <Loading show={loading} />
+            <ScrollToTop /> 
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Service />} />
               <Route path="/store" element={<Store />} />
               {/* <Route path="/cart" element={<CartSideBar />} /> */}
-              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/contact" element={<ContactUs/>} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Signup />} />
               <Route path="/store" element={<Store />} />
@@ -149,6 +155,11 @@ function App() {
                 path="/store/category/products/:categoryId/:categoryTitle"
                 element={<CategoryStorePage />}
               />
+              <Route path="terms" element={<TermsAndConditions />} />
+              <Route path="returnpolicy" element={<RefundPolicy />} />
+              <Route path="shippingpolicy" element={<ShippingPolicy />} />
+              <Route path="privacypolicy" element={<PrivacyPolicy />} />
+              <Route path="contactus" element={<ContactUs />} />
               <Route path="/users" element={<Dashboard />}>
                 {/* <Route path="home" element={<Index />} /> */}
                 <Route path="profile/:userId" element={<Profile />} />
@@ -161,6 +172,7 @@ function App() {
                   path="orders/payment-success"
                   element={<AfterPaymentPage />}
                 />
+
               </Route>
               <Route path="/admin" element={<AdminDashboard />}>
                 <Route path="home" element={<AdminHome />} />

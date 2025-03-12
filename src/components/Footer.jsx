@@ -3,7 +3,7 @@ import { IconContext } from 'react-icons';
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { Container, Row, Col } from 'react-bootstrap';
 import { getCategories } from '../services/CategoryService';
-
+import { Link ,NavLink} from "react-router-dom";
 // Import the payment logo from the assets folder
 // import acceptedPaymentLogo from ''; // Replace with your actual image file name and extension
 
@@ -24,19 +24,23 @@ export const Footer = () => {
             <img
               src="../../marketmixlogofooter.png"
               alt="logo"
-              style={{ maxWidth: "20%",minWidth:"130px" }}
+              style={{ maxWidth: "20%", minWidth: "130px" }}
             />
             {/* <h4 className='fw-bold'>Brand Name</h4> */}
-            <ul className='d-flex flex-wrap mt-4 justify-content-center' style={{ listStyle: "none",margin:"0 2rem" }}>
-              <li className='mx-5 my-2'>Login</li>
-              <li className='mx-5 my-2'>Signup</li>
+            <ul className='d-flex flex-wrap mt-4 justify-content-center' style={{ listStyle: "none", margin: "0 2rem" }}>
+              <NavLink as={NavLink} to="/login" className='mx-5 my-2' style={{ cursor: "pointer",textDecoration:'none',color:"white" }}>Login</NavLink>
+              <Link style={{ cursor: "pointer",textDecoration:'none',color:"white" }} as={NavLink} to="/register" className='mx-5 my-2'>Signup</Link>
 
               {
                 categories?.map(cat => (
-                  <li className='mx-5 my-2'>{cat.title}</li>
+                  <Link style={{ cursor: "pointer",textDecoration:'none',color:"white" }} as={Link} to={`/store/category/products/${cat.categoryId}/${cat.title}`} className='mx-5 my-2'>{cat.title}</Link>
                 ))
               }
-              <li className='mx-5 my-2'>Contact Us</li>
+              <Link style={{ cursor: "pointer",textDecoration:'none',color:"white" }} as={Link} to={"/contactus"} className='mx-5 my-2'>Contact Us</Link>
+              <Link style={{ cursor: "pointer",textDecoration:'none',color:"white" }} as={Link} to="/terms" className='mx-5 my-2'>Terms and Conditions</Link>
+              <Link style={{ cursor: "pointer",textDecoration:'none',color:"white" }} as={Link} to="/returnpolicy" className='mx-5 my-2'>Refund Policy</Link>
+              <Link style={{ cursor: "pointer",textDecoration:'none',color:"white" }} as={Link} to="/privacypolicy" className='mx-5 my-2'>Privacy Policy</Link>
+              <Link style={{ cursor: "pointer",textDecoration:'none',color:"white" }} as={Link} to="/shippingpolicy" className='mx-5 my-2'>Shipping Policy</Link>
             </ul>
             {/* <p>A short description of your brand</p>
             <p>Contact Email: example@example.com</p> */}
@@ -105,12 +109,12 @@ export const Footer = () => {
                 <img
                   src={"../../assets/pay.png"}
                   alt="Accepted Payment Methods"
-                  style={{ maxWidth: '150px'}}
+                  style={{ maxWidth: '150px' }}
                 />
               </div>
-           
+
             </IconContext.Provider>
-          
+
           </Col>
           <Col className='d'>
             <p>All Rights Reserved &copy; {new Date().getFullYear()}</p>
