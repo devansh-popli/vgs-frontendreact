@@ -11,7 +11,7 @@ const AfterPaymentPage = () => {
           <p>Thank you for your purchase.</p>
           <p>Your order has been successfully processed.</p>
           <p>We will send you a confirmation email with the details of your order.</p>
-          <Button variant="primary" as={Link} to="/store">Continue Shopping</Button>
+          <Button  className='themebgColor' as={Link} to="/store">Continue Shopping</Button>
         </Col>
       </Row>
     </Container>

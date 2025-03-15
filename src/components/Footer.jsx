@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IconContext } from 'react-icons';
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { Container, Row, Col } from 'react-bootstrap';
 import { getCategories } from '../services/CategoryService';
 import { Link ,NavLink} from "react-router-dom";
+import { CategoryContext } from '../context/CategoryContext';
 // Import the payment logo from the assets folder
 // import acceptedPaymentLogo from ''; // Replace with your actual image file name and extension
 
 export const Footer = () => {
   const [categories, setcategories] = useState([])
+  const categoriesContext=useContext(CategoryContext);
   useEffect(() => {
-    getCategories().then(data => {
-      console.log(data)
-      setcategories(data.content)
-    })
-  }, [])
+
+    // getCategories().then(data => {
+    //   console.log(data)
+    //   setcategories(data.content)
+    // })
+    setcategories(categoriesContext?.categories?.content)
+  }, [categoriesContext])
 
   return (
     <footer className=" footerColor text-white mt-5 py-4">

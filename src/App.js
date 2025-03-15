@@ -47,6 +47,7 @@ import ShippingPolicy from "./pages/users/ShippingPolicy";
 import PrivacyPolicy from "./pages/users/PrivacyPolicy";
 import ContactUs from "./pages/users/ContactUs";
 import ScrollToTop from "./auth/ScrollToTop";
+import { CategoryContextProvider } from "./context/CategoryContextProvider";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -89,7 +90,9 @@ function App() {
             title: "Network Error",
             html: "Backend Server is Down",
             icon: "info",
+            confirmButtonColor: "#d4400f"
           });
+
         }
         return Promise.reject(error);
       }
@@ -118,6 +121,7 @@ function App() {
     //setting up routes
     <GoogleOAuthProvider clientId="1078535299525-htqhsh99nk7pu8ks2qjb5stje9shsa57.apps.googleusercontent.com">
       <UserProvider>
+        <CategoryContextProvider>
         <CartContextProvider>
           <BrowserRouter>
             <ToastContainer
@@ -131,21 +135,21 @@ function App() {
               progress={progress}
               waitingTime={1100}
             />
-              <TopNavbar />
+            <TopNavbar />
             <div className="sticky-top">
-              <CustomNavbar toggleSidebar={toggleSidebar}/>
-              <LeftSidebar toggleSidebar={toggleSidebar} isOpen={isOpen} setIsOpen={setIsOpen}/>
+              <CustomNavbar toggleSidebar={toggleSidebar} />
+              <LeftSidebar toggleSidebar={toggleSidebar} isOpen={isOpen} setIsOpen={setIsOpen} />
               <BelowNavbar />
             </div>
             <Loading show={loading} />
-            <ScrollToTop /> 
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Service />} />
               <Route path="/store" element={<Store />} />
               {/* <Route path="/cart" element={<CartSideBar />} /> */}
-              <Route path="/contact" element={<ContactUs/>} />
+              <Route path="/contact" element={<ContactUs />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Signup />} />
               <Route path="/store" element={<Store />} />
@@ -164,7 +168,7 @@ function App() {
                 {/* <Route path="home" element={<Index />} /> */}
                 <Route path="profile/:userId" element={<Profile />} />
                 <Route path="about" element={<AboutUser />} />
-                <Route path="orders" element={<Orders/>} />
+                <Route path="orders" element={<Orders />} />
                 <Route path="referral/order-details" element={<LoadOrders isRefferalUser={true} />} />
                 <Route path="orders/:referralId" element={<Orders />} />
                 <Route path="orders-details" element={<LoadOrders />} />
@@ -188,6 +192,7 @@ function App() {
             <Footer />
           </BrowserRouter>
         </CartContextProvider>
+        </CategoryContextProvider>
       </UserProvider>
     </GoogleOAuthProvider>
   );

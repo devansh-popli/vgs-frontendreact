@@ -10,7 +10,7 @@ import {
   trendingCollections,
   trendingProducts,
 } from "../components/users/HomePageSections";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getAllProducts, getLiveProducts } from "../services/ProductService";
 import React from "react";
 import ContactUs from "./ContactUs";
@@ -21,7 +21,9 @@ import { getCategories } from "../services/CategoryService";
 import { Link } from "react-router-dom";
 import ColorfulCards from "../components/users/ColorFullCards";
 import CategoriesSection from "../components/users/CategoriesSections";
+import { CategoryContext } from "../context/CategoryContext";
 export const Index = () => {
+  const categoriesContext=useContext(CategoryContext)
   const findProducts = () => {
     getLiveProducts(0, 5, "addedDate", "desc")
       .then((data) => {
@@ -37,13 +39,15 @@ export const Index = () => {
       .catch((error) => {
         toast.error("Error while getting products");
       });
-    getCategories(0, 100)
-      .then((data) => {
-        setCategories(data);
-      })
-      .catch((error) => {
-        toast.error("error loading categories");
-      });
+    // getCategories(0, 100)
+    //   .then((data) => {
+    //     setCategories(data);
+    //   })
+    //   .catch((error) => {
+    //     toast.error("error loading categories");
+    //   });
+
+      setCategories(categoriesContext?.categories)
   };
   const [recentProducts, setRecentProducts] = useState([]);
   const [recommendedProducts, setRecommendedProducts] = useState([]);
@@ -52,7 +56,11 @@ export const Index = () => {
   });
   useEffect(() => {
     findProducts();
-    getCategories();
+  //  getCategories();
+  }, []);
+  useEffect(() => {
+  //  getCategories();
+  setCategories(categoriesContext?.categories)
   }, []);
   const [sliderImages, setSliderImages] = useState([]);
   const unsplashAccessKey = "YOUR_UNSPLASH_ACCESS_KEY";
@@ -188,7 +196,7 @@ export const Index = () => {
         ))}
       </Carousel>
       <Container fluid className="new-section">
-        {trendingCollections(categories.content)}
+        {trendingCollections(categories?.content)}
       </Container>
       <div className="mt-5 ">
         <CategoriesSection />

@@ -69,8 +69,8 @@ export const Orders = () => {
       amount: response.amount, // Amount in paise (e.g., 1000 paise = ₹10)
       order_id: response.orderId,
       currency: response.currency,
-      name: "My Store",
-      description: "Test Payment",
+      name: "MarketMix",
+      description: "Payment for a order",
       handler: (response) => {
         console.log(response);
         order.paymentStatus = "PAID";
@@ -106,7 +106,7 @@ export const Orders = () => {
     try {
       const data = await createOrder(order);
       setCart({ items: [] });
-      toast.success("Order Created Successfully Proceeding for Payment");
+      toast.success("Order Created Successfully");
     } catch (e) {
       toast.error("error while creating order");
     }

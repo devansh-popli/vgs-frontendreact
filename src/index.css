@@ -62,7 +62,10 @@ body {
   background-color: #d4400f!important;
   border: #d4400f!important;
 }
-
+.swal2-icon.swal2-info {
+  color: rgb(18 36 71) !important; /* Change to your desired color */
+  border-color: rgb(18 36 71) !important;
+}
 .bg-tone {
   background-color: #f1f5f9 !important;
 }

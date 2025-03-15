@@ -17,6 +17,7 @@ import { FaShippingFast } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
 import { Dropdown } from "react-bootstrap";
 import { HiMiniBars3 } from "react-icons/hi2";
+import { CategoryContext } from "../../context/CategoryContext";
 const CustomNavbar = ({toggleSidebar}) => {
   const userContext = useContext(UserContext);
   const { showCartSideBar, showCart, setCart } = useContext(CartContext);
@@ -28,11 +29,13 @@ const CustomNavbar = ({toggleSidebar}) => {
     setCart({ items: [] });
   };
   const [categories, setCategories] = useState([]);
+  const categoriesContext=useContext(CategoryContext);
   useEffect(() => {
     getCategories(0, 1000)
       .then((data) => {
         // console.log(data,"cat")
         setCategories(data.content);
+        categoriesContext.addCategories(data)
       })
       .catch((error) => {
         toast.error("error while getting categories");

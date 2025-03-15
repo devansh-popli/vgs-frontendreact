@@ -8,16 +8,19 @@ import { MdCategory } from "react-icons/md";
 import { UserContext } from '../../context/UserContext';
 import { CartContext } from '../../context/CartContext';
 import { NavLink } from 'react-router-dom';
+import { CategoryContext } from '../../context/CategoryContext';
 function LeftSidebar({ toggleSidebar, isOpen }) {
 
     const [categories, setCategories] = useState([]);
     const [expandedCategory, setExpandedCategory] = useState(null);
     const userContext = useContext(UserContext);
+    const categoriesContext = useContext(CategoryContext);
     useEffect(() => {
-        getCategories(0, 1000)
-            .then((data) => setCategories(data.content))
-            .catch(() => toast.error("Error while getting categories"));
-    }, []);
+        setCategories(categoriesContext?.categories?.content)
+        // getCategories(0, 1000)
+        //     .then((data) => setCategories(data.content))
+        //     .catch(() => toast.error("Error while getting categories"));
+    }, [categoriesContext]);
     const { showCartSideBar, showCart, setCart } = useContext(CartContext);
     const toggleCategory = () => {
         setExpandedCategory(expandedCategory === "Shop By Category" ? null : "Shop By Category");
@@ -41,7 +44,7 @@ function LeftSidebar({ toggleSidebar, isOpen }) {
                             </Accordion.Header>
                             <Accordion.Body>
                                 <div className={expandedCategory === "Shop By Category" ? "expanded" : "collapsed"}>
-                                    {categories.map((category) => (
+                                    {categories?.map((category) => (
                                         <Nav.Link onClick={ toggleSidebar} as={NavLink} to={`/store/category/products/${category.categoryId}/${category.title}`} className='customNavLink' key={category.categoryId} >
                                             {category.title}
                                         </Nav.Link>

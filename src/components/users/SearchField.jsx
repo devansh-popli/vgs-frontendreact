@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { InputGroup, FormControl, Button, Form } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
+import { CategoryContext } from "../../context/CategoryContext";
 
 export const SearchField = () => {
     const [searchText, setSearchText] = useState('');
-    const categories = ["Bracelets", "Rings", "Anklets"];
+    const [categories, setCategories] = useState([]);
+    const categoriesContext=useContext(CategoryContext)
+    useEffect(()=>{
+     let cats= categoriesContext?.categories?.content?.map(data=>data.title)
+      setCategories(cats);
+    },[categoriesContext])
+  
     let currentIndex = 0;
   
     useEffect(() => {
