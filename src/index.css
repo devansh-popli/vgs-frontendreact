@@ -57,7 +57,10 @@ body {
   /* filter: blur(5px) !important; */
   border: 0px !important;
 }
-
+.loginCard
+{
+  width: 50%;
+}
 .themebgColor {
   background-color: #d4400f!important;
   border: #d4400f!important;
@@ -236,6 +239,10 @@ body {
   /* .nav-dn1 {
     display: block;
   } */
+  .loginCard
+  {
+    width: 75%;
+  }
   .display-4{
     font-size: 2.25rem !important;
     text-transform: uppercase !important;
@@ -302,6 +309,10 @@ body {
 }
 
 @media (max-width: 768px) {
+  .loginCard
+{
+  width: 80%;
+}
   .d{
     display: flex;
     justify-content: center !important;
@@ -340,6 +351,10 @@ body {
 }
 
 @media (max-width: 600px) {
+  .loginCard
+  {
+    width: 100%;
+  }
   .display-4{
     font-size: 1.8rem !important;
     text-transform: uppercase !important;

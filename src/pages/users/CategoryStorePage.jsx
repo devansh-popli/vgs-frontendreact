@@ -77,9 +77,12 @@ export const CategoryStorePage = () => {
         </InfiniteScroll>
       </>
     ) : (
-      <h3 className="mt-5 text-center text-secondary fw-bold text-capitalize">
-        No Products for this Category
-      </h3>
+      <div className="text-center">
+      <img src={`${process.env.PUBLIC_URL}/assets/nodata.svg`} alt="123" style={{height:"50vh"}} />
+      </div>
+      // <h3 className="mt-5 text-center text-secondary fw-bold text-capitalize">
+      //   No Products for this Category
+      // </h3>
     );
   };
   return (

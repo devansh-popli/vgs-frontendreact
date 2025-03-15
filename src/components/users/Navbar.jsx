@@ -62,7 +62,7 @@ const CustomNavbar = ({toggleSidebar}) => {
           className="d-flex justify-content-center align-items-center"
         >
           <img
-            src="../../assets/marketmixlogo.png"
+            src={`${process.env.PUBLIC_URL}/assets/marketmixlogo.png`}
             alt="logo"
             height={75}
             width={125}

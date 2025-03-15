@@ -35,7 +35,7 @@ export const ProductView = () => {
     }).catch(err => {
       toast.error("error while fetching product images")
     })
-  }, []);
+  }, [productId]);
 
 
   const SingleProductView = () => {

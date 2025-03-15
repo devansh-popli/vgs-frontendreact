@@ -87,12 +87,14 @@ export const Login = () => {
     return (
       <Container className="mt-3" style={{ position: "relative", top: -60 }}>
         <Row>
-          <Col>
-            <Card sm={{ span: 6, offset: 3 }} className="shadow border-0">
+          <Col className="d-flex align-items-center justify-content-center">
+            <Card className="shadow border-0 loginCard">
               <Card.Body>
-                <div className="text-center ">
-                  <img src="../assets/logo.png" alt="" height={70} width={70} />
-                  <h3 className="text-muted">Store Login</h3>
+                <div className="d-flex flex-column ">
+                  <div className="d-flex justify-content-start align-items-start">
+                  <img src="../assets/favnew.png" alt="" height={80} width={90} />
+                  </div>
+                  <h3 className="text-muted ">Login to Your Account</h3>
                 </div>
                 <Form onSubmit={submitLoginForm}>
                   <Form.Group

@@ -12,6 +12,7 @@ import { CategoryContext } from "./CategoryContext";
 
 export const CategoryContextProvider = ({ children }) => {
   const [categories, setCategories] = useState(null);
+  const [liveProducts, setLiveProducts] = useState([]);
 //   useEffect(() => {
 //     setIsLogin(isLoggedIn());
 //     setUserData(getUserFromLocalStorage());
@@ -22,11 +23,16 @@ export const CategoryContextProvider = ({ children }) => {
   const addCategories = (data) => {
     setCategories(data);
   };
+  const addLiveProducts = (data) => {
+    setLiveProducts(data);
+  };
   return (
     <CategoryContext.Provider
       value={{
         categories: categories,
         addCategories: addCategories,
+        addLiveProducts:addLiveProducts,
+        liveProducts:liveProducts
       }}
     >
       {children}

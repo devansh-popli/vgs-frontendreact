@@ -121,13 +121,19 @@ export const Signup = () => {
       <Container>
         {/* {JSON.stringify(data)} */}
         <Row>
-          <Col>
-            <Card sm={{ span: 6, offset: 3 }} className="my-2 shadow border-0" style={{ position: 'relative', top: -60 }}>
+          <Col className="d-flex justify-content-center align-items-center">
+            <Card sm={{ span: 6, offset: 3 }} className="my-2 shadow border-0 loginCard" style={{ position: 'relative', top: -60 }}>
               <Card.Body>
-                <div className="text-center">
+              <div className="d-flex flex-column ">
+                  <div className="d-flex justify-content-start align-items-start">
+                  <img src="../assets/favnew.png" alt="" height={80} width={90} />
+                  </div>
+                  <h3 className="text-muted ">Sign Up to MarketMix</h3>
+                </div>
+                {/* <div className="text-center">
                   <img src="../assets/logo.png" height={70} width={70} alt="" />
                 </div>
-                <h3 className="text-muted mb-3 text-center">Store Sign up here</h3>
+                <h3 className="text-muted mb-3 text-center">Store Sign up here</h3> */}
                 <Form onSubmit={submitForm}>
                   <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Enter your name</Form.Label>

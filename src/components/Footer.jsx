@@ -26,7 +26,7 @@ export const Footer = () => {
         <Row className="text-center">
           <Col>
             <img
-              src="../../marketmixlogofooter.png"
+              src={`${process.env.PUBLIC_URL}/marketmixlogofooter.png`}
               alt="logo"
               style={{ maxWidth: "20%", minWidth: "130px" }}
             />

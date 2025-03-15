@@ -17,15 +17,15 @@ export const Base = ({
     <div>
       <Container
         fluid
-        className="bg-white p-5  d-flex align-items-center justify-content-center text-center"
+        className=" p-5  d-flex align-items-center justify-content-center text-center"
       >
-        <div className="">
-          <h3 className="text-white">{title}</h3>
-          <p className="text-white">{description && description}</p>
+        {/* <div className="">
+          {/* <h3 className="text-white">{title}</h3> */}
+          {/* <p className="text-white">{description && description}</p> 
          {buttonEnabled && <Button as={Link} to={buttonLink} variant={buttonVariant}>
             {buttonText}
           </Button>}
-        </div>
+        </div> */}
       </Container>
       {children}
       {/* <Footer /> */}
