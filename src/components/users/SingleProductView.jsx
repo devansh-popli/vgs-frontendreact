@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Card, Carousel, Container } from "react-bootstrap";
+import { Button, Card, Carousel, Container, OverlayTrigger } from "react-bootstrap";
 import { getProductImageUrl } from "../../services/HelperService";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { CartContext } from "../../context/CartContext";
 import { toast } from "react-toastify";
 import { getAllProductImages } from "../../services/ProductService";
-
+import { FaRegShareFromSquare } from "react-icons/fa6";
+import { Tooltip } from "react-bootstrap";
 const SingleProductView = ({ product, width }) => {
   const navigate = useNavigate();
   const [copySuccess, setCopySuccess] = useState('');
@@ -35,6 +36,26 @@ const SingleProductView = ({ product, width }) => {
       toast.error("error while fetching product images")
     })
   }, [])
+  const shareProduct = (id) => {
+    try {
+      console.log("first")
+      if (navigator.share) {
+        navigator.share({
+          title: "Check out this product!",
+          text: "I found this amazing product for you.",
+          url: `${window.location.origin}/products/${id}`
+        })
+          .then(() => toast.success("Product shared successfully"))
+          .catch((error) => console.log("error"));
+      } else {
+        toast.error("Sharing is not supported in this browser.");
+      }
+    }
+    catch (e) {
+      console.log(e + "e")
+    }
+  }
+
   return (
     <Card
 
@@ -50,7 +71,7 @@ const SingleProductView = ({ product, width }) => {
                 onClick={navigateToProductsView}
               >
                 <img
-                  style={{ objectFit: "cover", cursor: "pointer" }}
+                  style={{ objectFit: "cover", cursor: "pointer", position: "relative" }}
                   className="w-100 productImg"
                   src={imageUrl}
                   alt={`Product Image ${index + 1}`}
@@ -59,6 +80,7 @@ const SingleProductView = ({ product, width }) => {
             </Carousel.Item>
           ))}
         </Carousel>
+
       </>
       <Card.Body className="">
         {/* <h6 className="ms-2 text-capitalize text-secondary">
@@ -68,6 +90,8 @@ const SingleProductView = ({ product, width }) => {
             ? product?.categories[0]?.title
             : product?.categories[0]?.title.substring(0, 20) + "..."}
         </h6> */}
+
+        <Button className="gradientBgColor mx-2 p-0 m-0" style={{ zIndex: 1000, position: "absolute", bottom: "100", right: "0" }} onClick={() => shareProduct(product.productId)}><FaRegShareFromSquare className="w-5 h-5 mx-2" /></Button>
         <h6 className="ms-2 text-capitalize text-gray font" onClick={navigateToProductsView}>
           {product.title && product.title?.length < 19
             ? product?.title
@@ -88,7 +112,7 @@ const SingleProductView = ({ product, width }) => {
         {
           userContext.isBusinessUser &&
           <div style={{ display: "flex", justifyContent: "end" }}>
-            <Button onClick={() => copyToClipBoard(product?.productId)} size='sm' className='themeBorderColor font themeColor mb-2 ' variant={'outline-success'}> {copySuccess ? copySuccess : 'Copy Affilate Link'}</Button>
+            <Button onClick={() => shareProduct(product?.productId)} size='sm' className='themeBorderColor font themeColor mb-2 ' variant={'outline-success'}> {copySuccess ? copySuccess : 'Copy Affilate Link'}</Button>
           </div>
         }
         <div className="d-grid mb-2">

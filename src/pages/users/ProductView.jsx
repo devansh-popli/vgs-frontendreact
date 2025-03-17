@@ -8,6 +8,7 @@ import { getProductImageUrl } from "../../services/HelperService";
 import { ProductViewCss } from "./css/ProductView.css";
 import { CartContext } from "../../context/CartContext";
 import { UserContext } from "../../context/UserContext";
+import { FaRegShareFromSquare } from "react-icons/fa6";
 
 export const ProductView = () => {
   const { productId, referralId } = useParams();
@@ -36,7 +37,7 @@ export const ProductView = () => {
       toast.error("error while fetching product images")
     })
   }, [productId]);
-
+ 
 
   const SingleProductView = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -71,7 +72,7 @@ export const ProductView = () => {
                     {images?.map((imageUrl, index) => (
                       <div
                         className="d-flex justify-content-center align-items-center"
-
+                        style={{ position: "relative" }}
                         key={index}
                       >
                         <img
@@ -84,17 +85,18 @@ export const ProductView = () => {
                         />
                       </div>
                     ))}
+                  
                   </Container>
                 </div>
                 <div className="mobile">
-                <h3 className="text-capitalize text-gray">
-                  <b> {product?.title}</b>
-                </h3>
-                <h6 className="text-capitalize text-secondary mb-3">
-                  {product?.categories[0]?.title.length < 20
-                    ? product?.categories[0]?.title
-                    : product?.categories[0]?.title.substring(0, 20) + "..."}
-                </h6>
+                  <h3 className="text-capitalize text-gray">
+                    <b> {product?.title}</b>
+                  </h3>
+                  <h6 className="text-capitalize text-secondary mb-3">
+                    {product?.categories[0]?.title.length < 20
+                      ? product?.categories[0]?.title
+                      : product?.categories[0]?.title.substring(0, 20) + "..."}
+                  </h6>
                   <Carousel controls={false}>
                     {images?.map((imageUrl, index) => (
                       <Carousel.Item key={index}>
