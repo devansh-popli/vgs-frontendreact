@@ -59,7 +59,7 @@ const SingleProductView = ({ product, width }) => {
   return (
     <Card
 
-      className="shadow border-0 mb-2 singleProd rounded mx-0"
+      className="shadow border-0 mb-1 singleProd rounded mx-0"
       style={{ cursor: "pointer", margin: "0" }}
     >
       <div style={{ position: "relative" }}>
