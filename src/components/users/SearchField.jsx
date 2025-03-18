@@ -103,7 +103,7 @@ export const SearchField = () => {
             <Dropdown.Item className="d-flex justify-content-between" key={index} onClick={() => handleSearch(category)}>
               {/* {category+''} */}
               <div>
-                {category.title}
+                {category.title.length<27?category.title:category.title.slice(0,27)+'...'}
               </div>
               <div className="bold text-muted">
                 {category.productId ? 'Product' : "Category"}
