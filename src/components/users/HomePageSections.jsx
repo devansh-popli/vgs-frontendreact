@@ -152,8 +152,9 @@ export const trendingProducts = (products = [], handleSelect, index, text) => {
         removeArrowOnDeviceType={["tablet", "mobile"]}
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
+        additionalTransfrom={0}
         responsive={responsive}>
-
+       
         {/* {productsArr} */}
         {/* <div>∂∂∂¥¥¥</div>
           // <div>∂∂∂¥¥¥</div> */}
