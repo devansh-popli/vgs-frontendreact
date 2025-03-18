@@ -59,8 +59,8 @@ const SingleProductView = ({ product, width }) => {
   return (
     <Card
 
-      className="shadow border-0 mb-2 singleProd rounded"
-      style={{ cursor: "pointer", marginLeft: "" }}
+      className="shadow border-0 mb-2 singleProd rounded mx-0"
+      style={{ cursor: "pointer", margin: "0" }}
     >
       <div style={{ position: "relative" }}>
         <Carousel indicators={false}>

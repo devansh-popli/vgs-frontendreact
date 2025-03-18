@@ -87,7 +87,7 @@ export const PremiumCards = () => {
 };
 
 
-export const trendingProducts = (products = [], handleSelect, index, text) => {
+export const trendingProducts = (products=[], handleSelect, index,text) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -127,11 +127,11 @@ export const trendingProducts = (products = [], handleSelect, index, text) => {
       items: 2.1
     }
   };
-
+  
   const productsArr = products?.map((product) => (
     <SingleProductView id={product?.productId} product={product} />))
   return (
-    <Container fluid>
+    <div fluid>
       <Col className='section-top'>
         <h2 className="display-4 text-center mb-3" style={{ color: '#333' }}>{text}</h2>
         {/* <p className="lead text-muted text-center ">Discover what makes us unique and why our customers love shopping with us.</p> */}
@@ -139,20 +139,20 @@ export const trendingProducts = (products = [], handleSelect, index, text) => {
       {/* <Slider {...settings}> */}
 
       <Carousel
-        swipeable={true}
-        draggable={false}
-        ssr={true} // means to render carousel on server-side.
-        infinite={true}
-        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-        autoPlaySpeed={1000}
-        keyBoardControl={true}
-        customTransition="all .5"
-        transitionDuration={500}
-        containerClass="carousel-container"
-        removeArrowOnDeviceType={["tablet", "mobile"]}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
-        responsive={responsive}>
+      swipeable={true}
+      draggable={false}
+      ssr={true} // means to render carousel on server-side.
+      infinite={true}
+      // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+      autoPlaySpeed={1000}
+      keyBoardControl={true}
+      customTransition="all .5"
+      transitionDuration={500}
+      containerClass="carousel-container"
+      removeArrowOnDeviceType={["tablet", "mobile"]}
+      dotListClass="custom-dot-list-style"
+      itemClass="carousel-item-padding-40-px"
+      responsive={responsive}>
 
         {/* {productsArr} */}
         {/* <div>∂∂∂¥¥¥</div>
@@ -174,7 +174,7 @@ export const trendingProducts = (products = [], handleSelect, index, text) => {
       </Carousel> */}
       {/* </MultiCarousel> */}
       {/* </Slider> */}
-    </Container>
+    </div>
   );
 };
 
