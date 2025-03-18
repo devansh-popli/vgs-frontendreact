@@ -92,9 +92,9 @@ const SingleProductView = ({ product, width }) => {
         </h6> */}
 
         <h6 className="ms-2 text-capitalize text-gray font" onClick={navigateToProductsView}>
-          {product.title && product.title?.length < 19
+          {product.title && product.title?.length < 14
             ? product?.title
-            : product?.title.substring(0, 19) + "..."}
+            : product?.title.substring(0, 14) + "..."}
         </h6>
         <Container className="text-start font">
           <b>

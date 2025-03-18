@@ -116,15 +116,15 @@ export const trendingProducts = (products=[], handleSelect, index,text) => {
     },
     smallmobile1: {
       breakpoint: { max: 565, min: 451 },
-      items: 2.1
+      items: 2.04
     },
     smallmobile05: {
       breakpoint: { max: 450, min: 366 },
-      items: 2.1
+      items: 2.04
     },
     smallmobile0: {
       breakpoint: { max: 365, min: 0 },
-      items: 2.1
+      items: 2.04
     }
   };
   
