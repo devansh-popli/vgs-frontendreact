@@ -60,7 +60,7 @@ const Store = () => {
                 {products.content.map((product) => {
                   return (
                     <Col
-                      className="d-flex justify-content-center "
+                      className="d-flex justify-content-center mx-0 px-0 "
                       key={product.productId}
                       md={3}
                       lg={3}
