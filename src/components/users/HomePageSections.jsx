@@ -13,6 +13,12 @@ import { Link } from "react-router-dom";
 import { useSpring, animated } from "@react-spring/web";
 import FeaturedSection from "./FeaturedSection";
 import Carousel from 'react-multi-carousel';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css"; // Core Swiper styles
+// import Swiper and modules styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 const MultiCarousel = Carousel;
 const PremiumCard = ({ title, description, imgSrc, delay }) => {
   const animationProps = useSpring({
@@ -137,7 +143,7 @@ export const trendingProducts = (products = [], handleSelect, index, text) => {
         {/* <p className="lead text-muted text-center ">Discover what makes us unique and why our customers love shopping with us.</p> */}
       </Col>
       {/* <Slider {...settings}> */}
-
+      {/* 
       <Carousel
         swipeable={true}
         draggable={true}
@@ -153,16 +159,33 @@ export const trendingProducts = (products = [], handleSelect, index, text) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px"
         additionalTransfrom={0}
-        responsive={responsive}>
-       
-        {/* {productsArr} */}
-        {/* <div>∂∂∂¥¥¥</div>
-          // <div>∂∂∂¥¥¥</div> */}
-        {products?.map((product) =>
-          <SingleProductView id={product?.productId} product={product} />)
-        }
+        responsive={responsive}> */}
 
-      </Carousel>
+      {/* {productsArr} */}
+      {/* <div>∂∂∂¥¥¥</div>
+          // <div>∂∂∂¥¥¥</div> */}
+      <Swiper
+        spaceBetween={10}
+        slidesPerView={1}
+        navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }}
+        loop={true} // Enables infinite looping
+        centeredSlides={false}
+        breakpoints={{
+          1400: { slidesPerView: 4.5 },
+          1101: { slidesPerView: 3.5 },
+          881: { slidesPerView: 3 },
+          680: { slidesPerView: 2.5 },
+          600: { slidesPerView: 2.3 },
+          565: { slidesPerView: 3.3 },
+          451: { slidesPerView: 2.1 },
+          366: { slidesPerView: 2.1 },
+          0: { slidesPerView: 2.1 }
+        }}>
+        {products?.map((product) =>
+          <SwiperSlide><SingleProductView id={product?.productId} product={product} /></SwiperSlide>)
+        }
+      </Swiper>
+      {/* </Carousel> */}
       {/* <Carousel responsive={responsive}>
 
         {products?.map((product, index) => (
