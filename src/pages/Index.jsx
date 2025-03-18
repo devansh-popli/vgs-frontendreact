@@ -23,7 +23,7 @@ import ColorfulCards from "../components/users/ColorFullCards";
 import CategoriesSection from "../components/users/CategoriesSections";
 import { CategoryContext } from "../context/CategoryContext";
 export const Index = () => {
-  const categoriesContext=useContext(CategoryContext)
+  const categoriesContext = useContext(CategoryContext)
   const findProducts = () => {
     getLiveProducts(0, 5, "addedDate", "desc")
       .then((data) => {
@@ -47,7 +47,7 @@ export const Index = () => {
     //     toast.error("error loading categories");
     //   });
 
-      setCategories(categoriesContext?.categories)
+    setCategories(categoriesContext?.categories)
   };
   const [recentProducts, setRecentProducts] = useState([]);
   const [recommendedProducts, setRecommendedProducts] = useState([]);
@@ -56,12 +56,12 @@ export const Index = () => {
   });
   useEffect(() => {
     findProducts();
-  //  getCategories();
+    //  getCategories();
   }, []);
   useEffect(() => {
-  //  getCategories();
-  setCategories(categoriesContext?.categories)
-  }, []);
+    //  getCategories();
+    setCategories(categoriesContext?.categories)
+  }, [categoriesContext?.categories]);
   const [sliderImages, setSliderImages] = useState([]);
   const unsplashAccessKey = "YOUR_UNSPLASH_ACCESS_KEY";
   const unsplashUrl = `https://source.unsplash.com/random?nature`;

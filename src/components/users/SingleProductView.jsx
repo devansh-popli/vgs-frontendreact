@@ -62,7 +62,7 @@ const SingleProductView = ({ product, width }) => {
       className="shadow border-0 mb-2 singleProd rounded"
       style={{ cursor: "pointer", marginLeft: "" }}
     >
-      <div style={{position:"relative"}}>
+      <div style={{ position: "relative" }}>
         <Carousel indicators={false}>
           {images?.map((imageUrl, index) => (
             <Carousel.Item key={index}>
@@ -71,7 +71,7 @@ const SingleProductView = ({ product, width }) => {
                 onClick={navigateToProductsView}
               >
                 <img
-                  style={{ objectFit: "cover", cursor: "pointer"}}
+                  style={{ objectFit: "cover", cursor: "pointer" }}
                   className="w-100 productImg"
                   src={imageUrl}
                   alt={`Product Image ${index + 1}`}

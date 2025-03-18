@@ -87,7 +87,7 @@ export const PremiumCards = () => {
 };
 
 
-export const trendingProducts = (products=[], handleSelect, index,text) => {
+export const trendingProducts = (products = [], handleSelect, index, text) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -116,18 +116,18 @@ export const trendingProducts = (products=[], handleSelect, index,text) => {
     },
     smallmobile1: {
       breakpoint: { max: 565, min: 451 },
-      items: 2.5
+      items: 2.1
     },
     smallmobile05: {
       breakpoint: { max: 450, min: 366 },
-      items: 2.2
+      items: 2.1
     },
     smallmobile0: {
       breakpoint: { max: 365, min: 0 },
       items: 2.1
     }
   };
-  
+
   const productsArr = products?.map((product) => (
     <SingleProductView id={product?.productId} product={product} />))
   return (
@@ -139,20 +139,20 @@ export const trendingProducts = (products=[], handleSelect, index,text) => {
       {/* <Slider {...settings}> */}
 
       <Carousel
-      swipeable={true}
-      draggable={false}
-      ssr={true} // means to render carousel on server-side.
-      infinite={true}
-      // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-      autoPlaySpeed={1000}
-      keyBoardControl={true}
-      customTransition="all .5"
-      transitionDuration={500}
-      containerClass="carousel-container"
-      removeArrowOnDeviceType={["tablet", "mobile"]}
-      dotListClass="custom-dot-list-style"
-      itemClass="carousel-item-padding-40-px"
-      responsive={responsive}>
+        swipeable={true}
+        draggable={false}
+        ssr={true} // means to render carousel on server-side.
+        infinite={true}
+        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+        autoPlaySpeed={1000}
+        keyBoardControl={true}
+        customTransition="all .5"
+        transitionDuration={500}
+        containerClass="carousel-container"
+        removeArrowOnDeviceType={["tablet", "mobile"]}
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-padding-40-px"
+        responsive={responsive}>
 
         {/* {productsArr} */}
         {/* <div>∂∂∂¥¥¥</div>
