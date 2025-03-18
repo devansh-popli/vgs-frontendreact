@@ -14,6 +14,7 @@ import { useSpring, animated } from "@react-spring/web";
 import FeaturedSection from "./FeaturedSection";
 import Carousel from 'react-multi-carousel';
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css"; // Core Swiper styles
 // import Swiper and modules styles
 import 'swiper/css';
@@ -166,8 +167,9 @@ export const trendingProducts = (products = [], handleSelect, index, text) => {
           // <div>∂∂∂¥¥¥</div> */}
       <Swiper
         spaceBetween={10}
+        modules={[ Navigation, Pagination, Autoplay]}
         slidesPerView={1}
-        navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }}
+        navigation={true}
         loop={true} // Enables infinite looping
         centeredSlides={false}
         breakpoints={{
