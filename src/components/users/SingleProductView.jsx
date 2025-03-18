@@ -62,7 +62,7 @@ const SingleProductView = ({ product, width }) => {
       className="shadow border-0 mb-2 singleProd rounded"
       style={{ cursor: "pointer", marginLeft: "" }}
     >
-      <>
+      <div style={{position:"relative"}}>
         <Carousel indicators={false}>
           {images?.map((imageUrl, index) => (
             <Carousel.Item key={index}>
@@ -71,7 +71,7 @@ const SingleProductView = ({ product, width }) => {
                 onClick={navigateToProductsView}
               >
                 <img
-                  style={{ objectFit: "cover", cursor: "pointer", position: "relative" }}
+                  style={{ objectFit: "cover", cursor: "pointer"}}
                   className="w-100 productImg"
                   src={imageUrl}
                   alt={`Product Image ${index + 1}`}
@@ -80,8 +80,8 @@ const SingleProductView = ({ product, width }) => {
             </Carousel.Item>
           ))}
         </Carousel>
-
-      </>
+        <Button className="gradientBgColor mx-2 p-0 m-0" style={{ zIndex: 1000, position: "absolute", bottom: "0", right: "0" }} onClick={() => shareProduct(product.productId)}><FaRegShareFromSquare className="w-5 h-5 mx-2" /></Button>
+      </div>
       <Card.Body className="">
         {/* <h6 className="ms-2 text-capitalize text-secondary">
           {product.categories &&
@@ -91,7 +91,6 @@ const SingleProductView = ({ product, width }) => {
             : product?.categories[0]?.title.substring(0, 20) + "..."}
         </h6> */}
 
-        <Button className="gradientBgColor mx-2 p-0 m-0" style={{ zIndex: 1000, position: "absolute", bottom: "100", right: "0" }} onClick={() => shareProduct(product.productId)}><FaRegShareFromSquare className="w-5 h-5 mx-2" /></Button>
         <h6 className="ms-2 text-capitalize text-gray font" onClick={navigateToProductsView}>
           {product.title && product.title?.length < 19
             ? product?.title
