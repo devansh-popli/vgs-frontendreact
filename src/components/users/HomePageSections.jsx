@@ -87,7 +87,7 @@ export const PremiumCards = () => {
 };
 
 
-export const trendingProducts = (products=[], handleSelect, index,text) => {
+export const trendingProducts = (products = [], handleSelect, index, text) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -127,7 +127,7 @@ export const trendingProducts = (products=[], handleSelect, index,text) => {
       items: 2.04
     }
   };
-  
+
   const productsArr = products?.map((product) => (
     <SingleProductView id={product?.productId} product={product} />))
   return (
@@ -139,20 +139,20 @@ export const trendingProducts = (products=[], handleSelect, index,text) => {
       {/* <Slider {...settings}> */}
 
       <Carousel
-      swipeable={true}
-      draggable={false}
-      ssr={true} // means to render carousel on server-side.
-      infinite={true}
-      // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-      autoPlaySpeed={1000}
-      keyBoardControl={true}
-      customTransition="all .5"
-      transitionDuration={500}
-      containerClass="carousel-container"
-      removeArrowOnDeviceType={["tablet", "mobile"]}
-      dotListClass="custom-dot-list-style"
-      itemClass="carousel-item-padding-40-px"
-      responsive={responsive}>
+        swipeable={true}
+        draggable={true}
+        ssr={true} // means to render carousel on server-side.
+        infinite={true}
+        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+        autoPlaySpeed={2000} // Slow down autoplay speed
+        transitionDuration={700} // Smooth transition
+        keyBoardControl={true}
+        customTransition="transform 0.7s ease-in-out"
+        containerClass="carousel-container"
+        removeArrowOnDeviceType={["tablet", "mobile"]}
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-padding-40-px"
+        responsive={responsive}>
 
         {/* {productsArr} */}
         {/* <div>∂∂∂¥¥¥</div>
