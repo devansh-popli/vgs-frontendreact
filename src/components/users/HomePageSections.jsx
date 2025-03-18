@@ -108,15 +108,15 @@ export const trendingProducts = (products = [], handleSelect, index, text) => {
     },
     smallmobile: {
       breakpoint: { max: 679, min: 600 },
-      items: 2.3, partialVisible: true
+      items: 2.3
     },
     smallmobile2: {
       breakpoint: { max: 600, min: 565 },
-      items: 3.3, partialVisible: true
+      items: 3.3
     },
     smallmobile1: {
       breakpoint: { max: 565, min: 451 },
-      items: 2.04, partialVisible: true
+      items: 2.04
     },
     smallmobile05: {
       breakpoint: { max: 450, min: 366 },
@@ -124,7 +124,7 @@ export const trendingProducts = (products = [], handleSelect, index, text) => {
     },
     smallmobile0: {
       breakpoint: { max: 365, min: 0 },
-      items: 2.04, partialVisible: true
+      items: 2.04
     }
   };
 
@@ -141,7 +141,7 @@ export const trendingProducts = (products = [], handleSelect, index, text) => {
       <Carousel
         swipeable={true}
         draggable={true}
-        ssr={true} // means to render carousel on server-side.
+        ssr={false} // means to render carousel on server-side.
         infinite={true}
         // autoPlay={this.props.deviceType !== "mobile" ? true : false}
         autoPlaySpeed={2000} // Slow down autoplay speed
