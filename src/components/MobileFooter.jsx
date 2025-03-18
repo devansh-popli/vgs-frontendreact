@@ -79,7 +79,7 @@ export const MobileFooter = () => {
           style={{ borderRadius:"15px",position: "absolute",top:"-10%",left:"50%",  transform: "translate(-50%, -68%)",backgroundColor:"#142449"}}
           as={NavLink}
           
-          to={`/users/profile/${userData.userId}`}
+          to={`/store`}
           className="d-flex flex-column align-items-center shadow shadow-lg px-4 py-3"
         >
           <FaStore className="text-white" size={25} />
