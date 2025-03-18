@@ -12,7 +12,7 @@ import { UserContext } from "../context/UserContext";
 import { NavLink } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-
+import { FaStore } from "react-icons/fa";
 export const MobileFooter = () => {
   // Assuming you have a state to track the user's login status
   const { isLogin, doLogout, userData } = useContext(UserContext);
@@ -28,19 +28,19 @@ export const MobileFooter = () => {
     <Navbar
       fixed="bottom"
       bg="light"
-      className="zindex2 justify-content-around nav-bottom m-0 p-0 py-2 mobFooter"
+      className="zindex2 justify-content-around nav-bottom m-0 p-0  mobFooter"
     >
-      <Nav.Item>
+      <Nav.Item className="itemFooter m-0 -0">
         <Nav.Link
           as={NavLink}
           to="/"
-          className="d-flex flex-column align-items-center justify-content-center"
+          className="d-flex flex-column align-items-center mt-x"
         >
-          <AiFillHome size={25} />
-          <small className="text-capitalize">Home</small>
+          <AiFillHome size={25} className="m-0 p-0" />
+          <small className="text-capitalize m-0 p-0">Home</small>
         </Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      <Nav.Item className="itemFooter">
         {/* <Nav.Link as={NavLink}  onClick={() => {
                   showCartSideBar();
                 }}>
@@ -53,7 +53,7 @@ export const MobileFooter = () => {
           }}
           as={NavLink}
           style={{ position: "relative" }}
-          className="d-flex flex-column align-items-center justify-content-center"
+          className="d-flex flex-column align-items-center mt-x"
         >
 
           <div>
@@ -62,7 +62,7 @@ export const MobileFooter = () => {
               className="themebgColor text-white  position-absolute rounded-circle text-center d-flex align-items-center justify-content-center"
               style={{
                 top: "-8px",
-                right: "-2px",
+                right: "22px",
                 width: "20px",
                 height: "20px",
               }}
@@ -74,13 +74,24 @@ export const MobileFooter = () => {
           <small className="text-capitalize" >Cart</small>
         </Nav.Link>
       </Nav.Item>
-
+      <Nav.Item className="itemFooter" style={{position:"relative"}}>
+        <Nav.Link
+          style={{ borderRadius:"15px",position: "absolute",top:"-10%",left:"50%",  transform: "translate(-50%, -68%)",backgroundColor:"#142449"}}
+          as={NavLink}
+          
+          to={`/users/profile/${userData.userId}`}
+          className="d-flex flex-column align-items-center shadow shadow-lg px-4 py-3"
+        >
+          <FaStore className="text-white" size={25} />
+          <small className="text-capitalize text-white">Store</small>
+        </Nav.Link>
+      </Nav.Item>
       {isLogin ? (
-        <Nav.Item>
+        <Nav.Item className="itemFooter">
           <Nav.Link
             as={NavLink}
             to={`/users/profile/${userData.userId}`}
-            className="d-flex flex-column align-items-center justify-content-center"
+            className="d-flex flex-column align-items-center mt-x"
           >
             <AiOutlineUser size={25} />
             <small className="text-capitalize">Profile</small>
@@ -88,21 +99,21 @@ export const MobileFooter = () => {
         </Nav.Item>
       ) : (
         <React.Fragment>
-          <Nav.Item>
+          <Nav.Item className="itemFooter">
             <Nav.Link
               as={NavLink}
               to="/login"
-              className="d-flex flex-column align-items-center justify-content-center"
+              className="d-flex flex-column align-items-center mt-x"
             >
               <AiOutlineLogin size={25} />
               <small className="text-capitalize">Login</small>
             </Nav.Link>
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="itemFooter">
             <Nav.Link
               as={NavLink}
               to="/register"
-              className="d-flex flex-column align-items-center justify-content-center"
+              className="d-flex flex-column align-items-center mt-x"
             >
               <AiOutlineUser size={25} />
               <small className="text-capitalize">Signup</small>
@@ -112,10 +123,10 @@ export const MobileFooter = () => {
       )}
 
       {isLogin && (
-        <Nav.Item>
+        <Nav.Item className="itemFooter">
           <Nav.Link
             onClick={handleLogout}
-            className="d-flex flex-column align-items-center justify-content-center"
+            className="d-flex flex-column align-items-center mt-x"
           >
             <AiOutlineLogout size={25} />
             <small className="text-capitalize">Logout</small>
