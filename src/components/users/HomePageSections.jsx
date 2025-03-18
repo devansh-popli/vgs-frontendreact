@@ -143,8 +143,8 @@ export const trendingProducts = (products = [], handleSelect, index, text) => {
         draggable={true}
         ssr={false} // means to render carousel on server-side.
         infinite={true}
+        autoPlay={false}
         // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-        autoPlaySpeed={2000} // Slow down autoplay speed
         transitionDuration={700} // Smooth transition
         keyBoardControl={true}
         customTransition="transform 0.7s ease-in-out"
