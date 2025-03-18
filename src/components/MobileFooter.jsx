@@ -28,6 +28,7 @@ export const MobileFooter = () => {
     <Navbar
       fixed="bottom"
       bg="light"
+      style={{borderTopRightRadius:"14px",borderTopLeftRadius:"14px"}}
       className="zindex2 justify-content-around nav-bottom m-0 p-0  mobFooter"
     >
       <Nav.Item className="itemFooter m-0 -0">
